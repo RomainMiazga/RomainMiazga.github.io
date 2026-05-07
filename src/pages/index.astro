@@ -1,8 +1,7 @@
 ---
-// Frontmatter : Ton code JS/données ici
 const name = "Romain Miazga";
-const jobTitle = "Technicien Informatique";
-const description = "Maintenance, Systèmes, Réseaux et Support.";
+const jobTitle = "Technicien Informatique de Proximité";
+const description = "En formation de technicien de proximité, j'assure le support technique, la maintenance du parc informatique et l'assistance aux utilisateurs au plus près du terrain.";
 ---
 
 <html lang="fr">
@@ -11,143 +10,232 @@ const description = "Maintenance, Systèmes, Réseaux et Support.";
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>{name} | Portfolio</title>
-		<meta name="description" content={`Portfolio de ${name} — ${jobTitle} : ${description}`} />
+		<title>{name} | Tech Portfolio</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
 	</head>
 	<body>
+		<div class="glow-overlay"></div>
+
 		<main>
 			<header class="hero">
+				<div class="badge">Actuellement en formation à la Metz Numeric School</div>
 				<h1>{name}</h1>
 				<p class="tagline">{jobTitle}</p>
-				<div class="description-box">
-					<p>{description}</p>
-				</div>
+				<p class="bio">{description}</p>
+				
 				<div class="actions">
-					<a href="#contact" class="btn primary">Me contacter</a>
-					<a href="/cv-romain-miazga.pdf" class="btn secondary" target="_blank">Télécharger mon CV</a>
+					<a href="mailto:romain.miazga@gmail.com" class="btn btn-primary">
+						<span>Me contacter</span>
+					</a>
+					<a href="/CV_MIAZGA_Romain_Technicien_Informatique.pdf" class="btn btn-outline" target="_blank">
+						Télécharger CV
+					</a>
 				</div>
 			</header>
 
 			<section class="skills">
-				<h2>Compétences Techniques</h2>
+				<div class="section-header">
+					<h2>Compétences</h2>
+					<div class="line"></div>
+				</div>
 				<div class="grid">
 					<div class="card">
-						<h3>🛠 Maintenance</h3>
-						<p>Diagnostic hardware, dépannage poste de travail, gestion de parc (GLPI).</p>
+						<div class="icon">🔧</div>
+						<h3>Maintenance & SAV</h3>
+						<p>Diagnostic de pannes matérielles, remplacement de composants et préparation de postes.</p>
 					</div>
 					<div class="card">
-						<h3>🖥 Systèmes</h3>
-						<p>Windows Server, Active Directory, Linux (Debian), Virtualisation (VMware, Proxmox).</p>
+						<div class="icon">👥</div>
+						<h3>Support Utilisateurs</h3>
+						<p>Assistance de proximité, gestion du ticketing et pédagogie auprès des collaborateurs.</p>
 					</div>
 					<div class="card">
-						<h3>🌐 Réseaux</h3>
-						<p>Configuration Switch/Routeur, VLANs, VPN, Pare-feu (pfSense).</p>
+						<div class="icon">🔌</div>
+						<h3>Déploiement</h3>
+						<p>Installation d'équipements réseaux, imprimantes IP et terminaux mobiles.</p>
 					</div>
 					<div class="card">
-						<h3>📞 Support</h3>
-						<p>Assistance utilisateurs (Niveau 1 & 2), prise en main à distance, ticketing.</p>
+						<div class="icon">🛡️</div>
+						<h3>Environnement Poste</h3>
+						<p>Gestion Active Directory (comptes, mots de passe) et sécurisation des postes de travail.</p>
 					</div>
 				</div>
 			</section>
 		</main>
 
 		<footer>
-			<p>© {new Date().getFullYear()} Romain Miazga — Portfolio propulsé par Astro & Debian</p>
+			<p>© {new Date().getFullYear()} — Romain Miazga • Technicien de Proximité</p>
 		</footer>
 	</body>
 </html>
 
 <style>
 	:root {
-		--primary: #0070f3;
-		--dark: #1a1a1a;
-		--light: #f4f4f4;
-		--grey: #888;
+		--bg: #050505;
+		--text: #ffffff;
+		--accent: #00d2ff;
+		--accent-2: #3a7bd5;
+		--card-bg: rgba(255, 255, 255, 0.05);
+		--card-border: rgba(255, 255, 255, 0.1);
+		--font: 'Plus Jakarta Sans', sans-serif;
 	}
 
+	* { box-sizing: border-box; }
+
 	body {
-		font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-		background-color: var(--light);
-		color: var(--dark);
+		font-family: var(--font);
+		background-color: var(--bg);
+		color: var(--text);
 		margin: 0;
-		line-height: 1.6;
+		overflow-x: hidden;
+		-webkit-font-smoothing: antialiased;
+	}
+
+	.glow-overlay {
+		position: fixed;
+		top: 0; left: 0; width: 100%; height: 100%;
+		background: radial-gradient(circle at 50% -20%, rgba(0, 210, 255, 0.15), transparent 50%);
+		pointer-events: none;
+		z-index: -1;
 	}
 
 	main {
-		max-width: 900px;
+		max-width: 1100px;
 		margin: 0 auto;
-		padding: 2rem;
+		padding: 4rem 2rem;
 	}
 
 	.hero {
 		text-align: center;
-		padding: 4rem 0;
+		padding: 6rem 0;
+		animation: fadeIn 1s ease-out;
+	}
+
+	.badge {
+		background: rgba(0, 210, 255, 0.1);
+		color: var(--accent);
+		padding: 0.5rem 1rem;
+		border-radius: 99px;
+		font-size: 0.8rem;
+		font-weight: 600;
+		display: inline-block;
+		margin-bottom: 2rem;
+		border: 1px solid rgba(0, 210, 255, 0.2);
 	}
 
 	h1 {
-		font-size: 3.5rem;
+		font-size: clamp(3rem, 8vw, 5rem);
+		font-weight: 800;
 		margin: 0;
-		color: var(--dark);
+		letter-spacing: -2px;
+		background: linear-gradient(to bottom, #fff 40%, #888);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
 	}
 
 	.tagline {
 		font-size: 1.5rem;
-		color: var(--primary);
-		font-weight: bold;
-		margin: 0.5rem 0;
+		background: linear-gradient(90deg, var(--accent), var(--accent-2));
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		font-weight: 700;
+		margin: 1rem 0;
 	}
 
-	.description-box {
-		background: #fff;
-		border-left: 5px solid var(--primary);
-		padding: 1rem;
-		display: inline-block;
-		margin-top: 1rem;
-		box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+	.bio {
+		max-width: 600px;
+		margin: 0 auto;
+		color: #a0a0a0;
+		font-size: 1.1rem;
 	}
 
 	.actions {
-		margin-top: 2rem;
+		margin-top: 3rem;
 		display: flex;
 		justify-content: center;
-		gap: 1rem;
-	}
-
-	.btn {
-		padding: 0.8rem 1.5rem;
-		text-decoration: none;
-		border-radius: 5px;
-		font-weight: bold;
-		transition: 0.3s;
-	}
-
-	.btn.primary { background: var(--primary); color: white; }
-	.btn.secondary { border: 2px solid var(--primary); color: var(--primary); }
-	.btn:hover { opacity: 0.8; transform: translateY(-2px); }
-
-	.skills { padding: 4rem 0; }
-	h2 { border-bottom: 2px solid var(--primary); display: inline-block; margin-bottom: 2rem; }
-
-	.grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 		gap: 1.5rem;
 	}
 
-	.card {
-		background: white;
-		padding: 1.5rem;
-		border-radius: 8px;
-		box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+	.btn {
+		padding: 1rem 2rem;
+		border-radius: 12px;
+		text-decoration: none;
+		font-weight: 600;
+		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 	}
 
-	.card h3 { color: var(--primary); margin-top: 0; }
+	.btn-primary {
+		background: var(--text);
+		color: var(--bg);
+	}
+
+	.btn-outline {
+		border: 1px solid var(--card-border);
+		color: var(--text);
+		backdrop-filter: blur(10px);
+	}
+
+	.btn:hover {
+		transform: translateY(-3px);
+		box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+	}
+
+	.btn-primary:hover { background: var(--accent); }
+
+	.section-header {
+		margin-top: 8rem;
+		margin-bottom: 3rem;
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+	}
+
+	.line { height: 1px; background: var(--card-border); flex-grow: 1; }
+
+	.grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+		gap: 2rem;
+	}
+
+	.card {
+		background: var(--card-bg);
+		border: 1px solid var(--card-border);
+		padding: 2.5rem;
+		border-radius: 24px;
+		transition: all 0.4s ease;
+		backdrop-filter: blur(10px);
+	}
+
+	.card:hover {
+		background: rgba(255, 255, 255, 0.08);
+		border-color: var(--accent);
+		transform: scale(1.02);
+	}
+
+	.icon { font-size: 2.5rem; margin-bottom: 1.5rem; }
+
+	.card h3 { margin: 0 0 1rem 0; font-size: 1.3rem; }
+
+	.card p { color: #888; margin: 0; line-height: 1.5; }
 
 	footer {
+		margin-top: 10rem;
+		padding-bottom: 4rem;
 		text-align: center;
-		padding: 2rem;
+		color: #444;
 		font-size: 0.9rem;
-		color: var(--grey);
+	}
+
+	@keyframes fadeIn {
+		from { opacity: 0; transform: translateY(20px); }
+		to { opacity: 1; transform: translateY(0); }
+	}
+
+	@media (max-width: 600px) {
+		.actions { flex-direction: column; }
+		main { padding: 1rem; }
 	}
 </style>
-
