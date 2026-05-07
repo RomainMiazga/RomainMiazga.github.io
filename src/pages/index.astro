@@ -1,17 +1,152 @@
 ---
-
+// Frontmatter : Ton code JS/données ici
+const name = "Romain Miazga";
+const jobTitle = "Technicien Informatique";
+const description = "Maintenance, Systèmes, Réseaux et Support.";
 ---
 
-<html lang="en">
+<html lang="fr">
 	<head>
 		<meta charset="utf-8" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<title>{name} | Portfolio</title>
+		<meta name="description" content={`Portfolio de ${name} — ${jobTitle} : ${description}`} />
 	</head>
 	<body>
-		<h1>Astro</h1>
+		<main>
+			<header class="hero">
+				<h1>{name}</h1>
+				<p class="tagline">{jobTitle}</p>
+				<div class="description-box">
+					<p>{description}</p>
+				</div>
+				<div class="actions">
+					<a href="#contact" class="btn primary">Me contacter</a>
+					<a href="/cv-romain-miazga.pdf" class="btn secondary" target="_blank">Télécharger mon CV</a>
+				</div>
+			</header>
+
+			<section class="skills">
+				<h2>Compétences Techniques</h2>
+				<div class="grid">
+					<div class="card">
+						<h3>🛠 Maintenance</h3>
+						<p>Diagnostic hardware, dépannage poste de travail, gestion de parc (GLPI).</p>
+					</div>
+					<div class="card">
+						<h3>🖥 Systèmes</h3>
+						<p>Windows Server, Active Directory, Linux (Debian), Virtualisation (VMware, Proxmox).</p>
+					</div>
+					<div class="card">
+						<h3>🌐 Réseaux</h3>
+						<p>Configuration Switch/Routeur, VLANs, VPN, Pare-feu (pfSense).</p>
+					</div>
+					<div class="card">
+						<h3>📞 Support</h3>
+						<p>Assistance utilisateurs (Niveau 1 & 2), prise en main à distance, ticketing.</p>
+					</div>
+				</div>
+			</section>
+		</main>
+
+		<footer>
+			<p>© {new Date().getFullYear()} Romain Miazga — Portfolio propulsé par Astro & Debian</p>
+		</footer>
 	</body>
 </html>
+
+<style>
+	:root {
+		--primary: #0070f3;
+		--dark: #1a1a1a;
+		--light: #f4f4f4;
+		--grey: #888;
+	}
+
+	body {
+		font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+		background-color: var(--light);
+		color: var(--dark);
+		margin: 0;
+		line-height: 1.6;
+	}
+
+	main {
+		max-width: 900px;
+		margin: 0 auto;
+		padding: 2rem;
+	}
+
+	.hero {
+		text-align: center;
+		padding: 4rem 0;
+	}
+
+	h1 {
+		font-size: 3.5rem;
+		margin: 0;
+		color: var(--dark);
+	}
+
+	.tagline {
+		font-size: 1.5rem;
+		color: var(--primary);
+		font-weight: bold;
+		margin: 0.5rem 0;
+	}
+
+	.description-box {
+		background: #fff;
+		border-left: 5px solid var(--primary);
+		padding: 1rem;
+		display: inline-block;
+		margin-top: 1rem;
+		box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+	}
+
+	.actions {
+		margin-top: 2rem;
+		display: flex;
+		justify-content: center;
+		gap: 1rem;
+	}
+
+	.btn {
+		padding: 0.8rem 1.5rem;
+		text-decoration: none;
+		border-radius: 5px;
+		font-weight: bold;
+		transition: 0.3s;
+	}
+
+	.btn.primary { background: var(--primary); color: white; }
+	.btn.secondary { border: 2px solid var(--primary); color: var(--primary); }
+	.btn:hover { opacity: 0.8; transform: translateY(-2px); }
+
+	.skills { padding: 4rem 0; }
+	h2 { border-bottom: 2px solid var(--primary); display: inline-block; margin-bottom: 2rem; }
+
+	.grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+		gap: 1.5rem;
+	}
+
+	.card {
+		background: white;
+		padding: 1.5rem;
+		border-radius: 8px;
+		box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+	}
+
+	.card h3 { color: var(--primary); margin-top: 0; }
+
+	footer {
+		text-align: center;
+		padding: 2rem;
+		font-size: 0.9rem;
+		color: var(--grey);
+	}
+</style>
