@@ -1,0 +1,46 @@
+---
+import Navbar from '../components/Navbar.astro';
+---
+
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Romain Miazga | Réalisation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <Navbar />
+    <div class="glow-overlay"></div>
+    <main>
+      <header>
+        <h1>Mes Réalisations <span>& Lab</span></h1>
+        <p>Documentation technique de mes travaux à la Metz Numeric School et projets personnels.</p>
+      </header>
+
+      <section class="project-detail">
+        <div class="card">
+          <h2>🔧 En cours de rédaction..</h2>
+          <p>...</p>
+          <ul>
+         
+          </ul>
+          </div>
+
+      </section>
+    </main>
+  </body>
+</html>
+
+<style>
+  /* Réutilise le style racine (couleurs, etc.) ou importe un layout */
+  body { background: #050505; color: #fff; font-family: 'Plus Jakarta Sans', sans-serif; margin: 0; }
+  main { max-width: 900px; margin: 0 auto; padding: 8rem 2rem; }
+  h1 { font-size: 3rem; margin-bottom: 1rem; }
+  h1 span { color: #00d2ff; }
+  header p { color: #a0a0a0; font-size: 1.2rem; }
+  .project-detail { margin-top: 4rem; display: flex; flex-direction: column; gap: 2rem; }
+  .card { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); padding: 2rem; border-radius: 20px; }
+  .card h2 { color: #00d2ff; margin-top: 0; }
+  .card ul { color: #888; }
+</style>
