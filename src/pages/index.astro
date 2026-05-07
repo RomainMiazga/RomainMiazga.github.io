@@ -1,150 +1,145 @@
 ---
-// Données extraites [cite: 1, 2, 9, 25]
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+
+// Données extraites
 const name = "Romain Miazga";
 const jobTitle = "Technicien Informatique de Proximité en formation";
 const description = "Actuellement en formation à la Metz Numeric School";
-import Navbar from '../components/Navbar.astro';
 ---
 
-<html lang="fr">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{name} | Portfolio Technicien</title>
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
-	</head>
-	<body>
-	<Navbar /> <div class="glow-overlay"></div>
-		<div class="glow-overlay"></div>
+<Layout title={`${name} | Portfolio Technicien`} description={description}>
+	<Navbar /> 
+	
+	<!-- Effet de fond -->
+	<div class="glow-overlay"></div>
 
-		<main>
-			<header class="hero">
-				<div class="badge">Bienvenue sur mon Portfolio</div>
-				<h1>{name}</h1>
-				<p class="tagline">{jobTitle}</p>
-				<p class="bio">{description}</p>
-				
-				<div class="actions">
-					<a href="mailto:romain.miazga@gmail.com" class="btn btn-primary">
-						<span>Me contacter</span>
-					</a>
-					<a href="/CV_MIAZGA_Romain_Technicien_Informatique.pdf" class="btn btn-outline" target="_blank">
-						Consulter mon CV
-					</a>
-				</div>
-			</header>
+	<main>
+		<header class="hero">
+			<div class="badge">Bienvenue sur mon Portfolio</div>
+			<h1>{name}</h1>
+			<p class="tagline">{jobTitle}</p>
+			<p class="bio">{description}</p>
+			
+			<div class="actions">
+				<a href="mailto:romain.miazga@gmail.com" class="btn btn-primary">
+					<span>Me contacter</span>
+				</a>
+				<a href="/CV_MIAZGA_Romain_Technicien_Informatique.pdf" class="btn btn-outline" target="_blank">
+					Consulter mon CV
+				</a>
+			</div>
+		</header>
 
-			<section class="skills">
-				<div class="section-header">
-					<h2>Compétences Techniques</h2>
-					<div class="line"></div>
+		<section class="skills">
+			<div class="section-header">
+				<h2>Compétences Techniques</h2>
+				<div class="line"></div>
+			</div>
+			<div class="grid">
+				<div class="card">
+					<div class="icon">💻</div>
+					<h3>Systèmes & OS</h3>
+					<p>Maîtrise Windows Client/Serveur (AD, GPO, NTFS) et environnements Linux Debian/Ubuntu.</p>
 				</div>
-				<div class="grid">
-					<div class="card">
-						<div class="icon">💻</div>
-						<h3>Systèmes & OS</h3>
-						<p>Maîtrise Windows Client/Serveur (AD, GPO, NTFS) et environnements Linux Debian/Ubuntu.</p>
-					</div>
-					<div class="card">
-						<div class="icon">🌐</div>
-						<h3>Réseau Cisco</h3>
-						<p>Configuration de VLAN, routage et commutation via Packet Tracer. Adressage IPv4/IPv6.</p>
-					</div>
-					<div class="card">
-						<div class="icon">☁️</div>
-						<h3>Virtualisation</h3>
-						<p>Déploiement de machines virtuelles sous VMware, Proxmox et gestion de stockage TrueNAS.</p>
-					</div>
-					<div class="card">
-						<div class="icon">🛠️</div>
-						<h3>Maintenance & Support</h3>
-						<p>Diagnostic hardware, gestion des priorités via GLPI et assistance physique ou à distance.</p>
-					</div>
+				<div class="card">
+					<div class="icon">🌐</div>
+					<h3>Réseau Cisco</h3>
+					<p>Configuration de VLAN, routage et commutation via Packet Tracer. Adressage IPv4/IPv6.</p>
 				</div>
-			</section>
-			<section class="env">
-				<div class="section-header">
-					<h2>Environnement de Travail</h2>
-					<div class="line"></div>
+				<div class="card">
+					<div class="icon">☁️</div>
+					<h3>Virtualisation</h3>
+					<p>Déploiement de machines virtuelles sous VMware, Proxmox et gestion de stockage TrueNAS.</p>
 				</div>
-				<div class="grid">
-					<div class="card">
-						<h3>🖥️ OS de travail</h3>
-						<p>Utilisation quotidienne de <strong>Debian 13</strong> pour le développement et <strong>Windows 11</strong> pour le support client.</p>
-					</div>
-					<div class="card">
-						<h3>⌨️ Ligne de commande</h3>
-						<p>Maîtrise du terminal via <strong>PuTTY</strong> et gestion distante sécurisée avec <strong>SSH</strong>.</p>
-					</div>
-					<div class="card">
-						<h3>📁 Transfert & Flux</h3>
-						<p>Gestion de fichiers via <strong>WinSCP</strong> (SFTP) et outils d'analyse réseau comme <strong>Nmap</strong>.</p>
-					</div>
-					<div class="card">
-						<h3>🔧 Outils Support</h3>
-						<p>Utilisation de <strong>GLPI</strong> pour le ticketing et <strong>Ventoy/Rufus</strong> pour la masterisation de postes.</p>
-					</div>
+				<div class="card">
+					<div class="icon">🛠️</div>
+					<h3>Maintenance & Support</h3>
+					<p>Diagnostic hardware, gestion des priorités via GLPI et assistance physique ou à distance.</p>
 				</div>
-			</section>
+			</div>
+		</section>
+		
+		<section class="env">
+			<div class="section-header">
+				<h2>Environnement de Travail</h2>
+				<div class="line"></div>
+			</div>
+			<div class="grid">
+				<div class="card">
+					<h3>🖥️ OS de travail</h3>
+					<p>Utilisation quotidienne de <strong>Debian 13</strong> pour le développement et <strong>Windows 11</strong> pour le support client.</p>
+				</div>
+				<div class="card">
+					<h3>⌨️ Ligne de commande</h3>
+					<p>Maîtrise du terminal via <strong>PuTTY</strong> et gestion distante sécurisée avec <strong>SSH</strong>.</p>
+				</div>
+				<div class="card">
+					<h3>📁 Transfert & Flux</h3>
+					<p>Gestion de fichiers via <strong>WinSCP</strong> (SFTP) et outils d'analyse réseau comme <strong>Nmap</strong>.</p>
+				</div>
+				<div class="card">
+					<h3>🔧 Outils Support</h3>
+					<p>Utilisation de <strong>GLPI</strong> pour le ticketing et <strong>Ventoy/Rufus</strong> pour la masterisation de postes.</p>
+				</div>
+			</div>
+		</section>
 
-<section class="soft-skills">
-				<div class="section-header">
-					<h2>Atouts & Savoir-être</h2>
-					<div class="line"></div>
+		<section class="soft-skills">
+			<div class="section-header">
+				<h2>Atouts & Savoir-être</h2>
+				<div class="line"></div>
+			</div>
+			<div class="grid">
+				<div class="card">
+					<div class="icon">🤝</div>
+					<h3>Relation Client</h3>
+					<p>Capacité d'écoute et pédagogie pour accompagner les utilisateurs dans la résolution de leurs problèmes.</p>
 				</div>
-				<div class="grid">
-					<div class="card">
-						<div class="icon">🤝</div>
-						<h3>Relation Client</h3>
-						<p>Capacité d'écoute et pédagogie pour accompagner les utilisateurs dans la résolution de leurs problèmes.</p>
-					</div>
-					<div class="card">
-						<div class="icon">⚡</div>
-						<h3>Gestion du Stress</h3>
-						<p>Réactivité et sang-froid face aux urgences techniques, acquis lors de mes expériences en commerce.</p>
-					</div>
-					<div class="card">
-						<div class="icon">👥</div>
-						<h3>Esprit d'Équipe</h3>
-						<p>Habitué au travail collaboratif et au respect des consignes de sécurité en environnement exigeant.</p>
-					</div>
-					<div class="card">
-						<div class="icon">⏱️</div>
-						<h3>Rigueur & Ponctualité</h3>
-						<p>Sens des responsabilités, gestion des priorités et respect strict des protocoles d'intervention.</p>
-					</div>
+				<div class="card">
+					<div class="icon">⚡</div>
+					<h3>Gestion du Stress</h3>
+					<p>Réactivité et sang-froid face aux urgences techniques, acquis lors de mes expériences en commerce.</p>
 				</div>
-			</section>
+				<div class="card">
+					<div class="icon">👥</div>
+					<h3>Esprit d'Équipe</h3>
+					<p>Habitué au travail collaboratif et au respect des consignes de sécurité en environnement exigeant.</p>
+				</div>
+				<div class="card">
+					<div class="icon">⏱️</div>
+					<h3>Rigueur & Ponctualité</h3>
+					<p>Sens des responsabilités, gestion des priorités et respect strict des protocoles d'intervention.</p>
+				</div>
+			</div>
+		</section>
 
-			<section class="certs">
-				<div class="section-header">
-					<h2>Certifications & Formation</h2>
-					<div class="line"></div>
+		<section class="certs">
+			<div class="section-header">
+				<h2>Certifications & Formation</h2>
+				<div class="line"></div>
+			</div>
+			<div class="cert-list">
+				<div class="cert-item">
+					<strong>Cisco Networking Academy</strong>
+					<span>Équipements, configuration et dépannage réseau</span>
 				</div>
-				<div class="cert-list">
-					<div class="cert-item">
-						<strong>Cisco Networking Academy</strong>
-						<span>Équipements, configuration et dépannage réseau</span>
-					</div>
-					<div class="cert-item">
-						<strong>Metz Numeric School</strong>
-						<span>Initié au numériqe By Num & Boost, Formation de TIP en cours</span>
-					</div>
+				<div class="cert-item">
+					<strong>Metz Numeric School</strong>
+					<span>Initié au numériqe By Num & Boost, Formation de TIP en cours</span>
 				</div>
-			</section>
-		</main>
+			</div>
+		</section>
+	</main>
 
-		<footer>
-			<p>© {new Date().getFullYear()} — Romain Miazga • Fameck (57)</p>
-		</footer>
-	</body>
-</html>
+	<footer>
+		<p>© {new Date().getFullYear()} — Romain Miazga • Fameck (57)</p>
+	</footer>
+</Layout>
 
-<style>
+<style is:global>
+	@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;800&display=swap');
+
 	:root {
 		--bg: #050505;
 		--text: #ffffff;
@@ -280,7 +275,7 @@ import Navbar from '../components/Navbar.astro';
 		transition: all 0.4s ease;
 	}
 
-.card:hover {
+	.card:hover {
 		border-color: var(--accent);
 		transform: translateY(-5px);
 		box-shadow: 0 10px 30px rgba(0, 210, 255, 0.1);
@@ -292,16 +287,16 @@ import Navbar from '../components/Navbar.astro';
 		border-color: var(--accent);
 	}
 
-@keyframes float {
+	@keyframes float {
 		0%, 100% { transform: translateY(0); }
 		50% { transform: translateY(-6px); }
 	}
 
-	.icon { 
-		font-size: 2.5rem; 
-		margin-bottom: 1.5rem; 
+	.icon {
+		font-size: 2.5rem;
+		margin-bottom: 1.5rem;
 		display: inline-block;
-		animation: float 4s ease-in-out infinite; 
+		animation: float 4s ease-in-out infinite;
 	}
 
 	.cert-list {
@@ -334,7 +329,7 @@ import Navbar from '../components/Navbar.astro';
 		to { opacity: 1; transform: translateY(0); }
 	}
 
-@media (max-width: 600px) {
+	@media (max-width: 600px) {
 		main { padding: 5rem 1.5rem 2rem 1.5rem; }
 		.actions { flex-direction: column; width: 100%; }
 		.btn { width: 100%; text-align: center; }
