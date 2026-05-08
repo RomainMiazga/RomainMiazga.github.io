@@ -1,23 +1,57 @@
+---
+/* src/components/Navbar.astro */
+const pathname = Astro.url.pathname.replace(/\/$/, "") || "/";
+
+const isActive = (path: string) => {
+  // Si on compare l'accueil
+  if (path === "/") return pathname === "/";
+  // Pour les autres pages, on vérifie si ça commence par le chemin
+  return pathname.startsWith(path);
+};
+---
+
 <nav class="navbar">
   <div class="nav-container">
     <a href="/" class="logo">RM<span>.</span></a>
-    <div class="nav-links">
-      <a href="/">Accueil</a>
-      <a href="/projets">Réalisations & Lab</a>
+    
+    <button class="menu-toggle" id="menu-btn" aria-label="Ouvrir le menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+
+    <div class="nav-links" id="nav-menu">
+      <a href="/" class={isActive('/') ? 'active' : ''}>Accueil</a>
+      <a href="/projets" class={isActive('/projets') ? 'active' : ''}>Réalisations & Lab</a>
+      <a href="https://www.linkedin.com/in/romain-miazga/" target="_blank" class="nav-social" aria-label="LinkedIn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+          <rect width="4" height="12" x="2" y="9"></rect>
+          <circle cx="4" cy="4" r="2"></circle>
+        </svg>
+      </a>
     </div>
   </div>
 </nav>
 
 <style>
+  :root {
+    --accent: #00d2ff;
+    --bg-dark: #050505;
+  }
+
   .navbar {
     position: fixed;
     top: 0;
+    left: 0;
     width: 100%;
-    z-index: 100;
-    backdrop-filter: blur(10px);
+    z-index: 1000;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(5, 5, 5, 0.7);
+    background: rgba(5, 5, 5, 0.75);
   }
+
   .nav-container {
     max-width: 1100px;
     margin: 0 auto;
@@ -26,19 +60,183 @@
     justify-content: space-between;
     align-items: center;
   }
+
+/* Style pour le lien actif */
+.nav-links a.active {
+    color: #00d2ff; /* Ta couleur --accent */
+    font-weight: 700;
+    text-shadow: 0 0 10px rgba(0, 210, 255, 0.5); /* Effet de lueur */
+}
+
+/* Optionnel : petite barre en dessous du lien actif */
+.nav-links a.active::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #00d2ff, #3a7bd5);
+    border-radius: 2px;
+}
+
+/* Assure-toi que les liens sont en position relative pour la barre */
+.nav-links a {
+    position: relative;
+    /* ... tes autres styles ... */
+}
+
   .logo {
     font-size: 1.5rem;
     font-weight: 800;
     color: #fff;
     text-decoration: none;
+    z-index: 1001;
   }
-  .logo span { color: #00d2ff; }
-  .nav-links { display: flex; gap: 2rem; }
+
+  .logo span { color: var(--accent); }
+
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+
   .nav-links a {
     color: #a0a0a0;
     text-decoration: none;
     font-weight: 600;
+    transition: 0.3s ease;
+  }
+
+  .nav-links a:hover { color: #fff; }
+
+  .nav-social {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent) !important;
+    background: rgba(0, 210, 255, 0.1);
+    padding: 8px;
+    border-radius: 10px;
+    border: 1px solid rgba(0, 210, 255, 0.2);
+  }
+
+  .nav-social:hover {
+    background: var(--accent) !important;
+    color: var(--bg-dark) !important;
+    transform: translateY(-2px);
+  }
+
+  .menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1001;
+    padding: 5px;
+  }
+
+  .bar {
+    width: 25px;
+    height: 2px;
+    background-color: #fff;
+    border-radius: 2px;
     transition: 0.3s;
   }
-  .nav-links a:hover { color: #fff; }
+
+  @media (max-width: 768px) {
+    .menu-toggle { display: flex; }
+
+    .nav-links {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      width: 80%;
+      height: 100vh;
+      background: #0a0a0a;
+      flex-direction: column;
+      justify-content: center;
+      gap: 2.5rem;
+      transition: 0.4s ease;
+      border-left: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-links.active {
+      right: 0;
+    }
+
+    /* Animation du X */
+    .menu-toggle.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .menu-toggle.active .bar:nth-child(2) { opacity: 0; }
+    .menu-toggle.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+  }
 </style>
+
+<script is:inline>
+  function setupMenu() {
+    const btn = document.getElementById('menu-btn');
+    const menu = document.getElementById('nav-menu');
+    const links = document.querySelectorAll('.nav-links a');
+
+    if (btn && menu) {
+      // On réinitialise pour éviter les bugs au changement de page
+      btn.classList.remove('active');
+      menu.classList.remove('active');
+      document.body.style.overflow = '';
+
+      btn.onclick = () => {
+        btn.classList.toggle('active');
+        menu.classList.toggle('active');
+        // Empêche de scroller la page quand le menu est ouvert
+        if (menu.classList.contains('active')) {
+          document.body.style.overflow = 'hidden';
+        } else {
+          document.body.style.overflow = '';
+        }
+      };
+
+      // Ferme le menu si on clique sur un lien
+      links.forEach(link => {
+        link.onclick = () => {
+          btn.classList.remove('active');
+          menu.classList.remove('active');
+          document.body.style.overflow = '';
+        };
+      });
+    }
+  }
+
+  // Initialisation
+  setupMenu();
+
+  // Pour Astro ViewTransitions (si activé)
+  document.addEventListener('astro:after-swap', setupMenu);
+  
+  function initScrollAnimations() {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('show-scroll');
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        });
+
+        // On cherche tous les éléments cachés sur la NOUVELLE page
+        const hiddenElements = document.querySelectorAll('.hidden-scroll');
+        
+        // On relance la surveillance
+        hiddenElements.forEach((el) => observer.observe(el));
+    }
+
+    // 1. S'exécute au premier chargement du site
+    initScrollAnimations();
+
+    // 2. S'exécute à CHAQUE fois que tu cliques sur un lien du menu (Spécifique Astro)
+    document.addEventListener('astro:page-load', initScrollAnimations);
+</script>

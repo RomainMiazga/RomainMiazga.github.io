@@ -1,0 +1,64 @@
+---
+// Ici, on peut mettre de la logique JavaScript si besoin
+const currentYear = new Date().getFullYear();
+---
+
+<footer>
+    <div class="footer-links">
+        <a href="https://www.linkedin.com/in/romain-miazga/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <span class="separator">•</span>
+        <a href="https://github.com/RomainMiazga" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <span class="separator">•</span>
+        <a href="mailto:romain.miazga@gmail.com">Contact</a>
+    </div>
+    <p>© {currentYear} — Romain Miazga • Technicien Informatique en Formation • Fameck </p>
+</footer>
+
+<style>
+    footer {
+        margin-top: 10rem;
+        padding: 4rem 1.5rem;
+        text-align: center;
+        border-top: 1px solid rgba(255, 255, 255, 0.05);
+        background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.3));
+    }
+
+    .footer-links {
+        margin-bottom: 1.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        flex-wrap: wrap; /* Pour que ça passe sur deux lignes sur les très petits téléphones */
+    }
+
+    .footer-links a {
+        color: #a0a0a0;
+        text-decoration: none;
+        font-size: 0.95rem;
+        transition: all 0.3s ease;
+    }
+
+    .footer-links a:hover {
+        color: var(--accent); /* Utilise ta variable de couleur bleue */
+        text-shadow: 0 0 10px rgba(0, 210, 255, 0.3);
+    }
+
+    .separator {
+        color: #333;
+    }
+
+    footer p {
+        color: #555;
+        font-size: 0.85rem;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    @media (max-width: 600px) {
+        footer {
+            margin-top: 5rem;
+            padding: 3rem 1rem;
+        }
+    }
+</style>
