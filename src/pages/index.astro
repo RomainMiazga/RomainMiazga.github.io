@@ -8,10 +8,9 @@ const jobTitle = "Technicien Informatique de Proximité en formation";
 const description = "Actuellement en formation à la Metz Numeric School";
 ---
 
-<Layout title={`${name} | Portfolio Technicien`} description={description}>
+<Layout title={`${name} | Technicien Informatique`} description={description}>
 	<Navbar /> 
 	
-	<!-- Effet de fond -->
 	<div class="glow-overlay"></div>
 
 	<main>
@@ -30,6 +29,30 @@ const description = "Actuellement en formation à la Metz Numeric School";
 				</a>
 			</div>
 		</header>
+
+		<section class="about">
+			<div class="section-header">
+				<h2>À propos</h2>
+				<div class="line"></div>
+			</div>
+			
+			<div class="about-container">
+				<div class="about-photo">
+					<img src="/romain-miazga.webp" alt="Portrait de Romain Miazga" />
+					<div class="photo-glow"></div>
+				</div>
+
+				<div class="about-content">
+					<p>
+						Passionné par l'informatique depuis toujours, j'ai décidé de transformer cet intérêt en expertise professionnelle en intégrant la <strong>Metz Numeric School</strong>. 
+						Mon parcours précédent dans le commerce m'a doté d'un sens du service client et d'une grande réactivité face aux imprévus.
+					</p>
+					<p>
+						Aujourd'hui, je me concentre sur la maîtrise des infrastructures réseau et du support technique. Mon objectif est d'apporter des solutions concrètes et pédagogiques aux utilisateurs, tout en garantissant la stabilité des systèmes.
+					</p>
+				</div>
+			</div>
+		</section>
 
 		<section class="skills">
 			<div class="section-header">
@@ -114,40 +137,38 @@ const description = "Actuellement en formation à la Metz Numeric School";
 			</div>
 		</section>
 
-<section class="certs">
-    <div class="section-header">
-        <h2>Certifications & Formation</h2>
-        <div class="line"></div>
-    </div>
-    
-    <div class="cert-grid">
-        <!-- Badge Cisco -->
-        <a href="https://www.credly.com/users/romain-miazga/badges#credly" target="_blank" class="cert-card">
-            <div class="cert-content">
-                <div class="cert-badge-icon">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Cisco_logo_blue_2016.svg" alt="Cisco Logo" />
-                </div>
-                <div class="cert-info">
-                    <strong>Cisco Networking Academy</strong>
-                    <p>Configuration, Adressage et Dépannage Réseau</p>
-                    <span class="verify-tag">Vérifier les badges →</span>
-                </div>
-            </div>
-        </a>
+		<section class="certs">
+			<div class="section-header">
+				<h2>Certifications & Formation</h2>
+				<div class="line"></div>
+			</div>
+			
+			<div class="cert-grid">
+				<a href="https://www.credly.com/users/romain-miazga/badges#credly" target="_blank" class="cert-card">
+					<div class="cert-content">
+						<div class="cert-badge-icon">
+							<img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Cisco_logo_blue_2016.svg" alt="Cisco Logo" />
+						</div>
+						<div class="cert-info">
+							<strong>Cisco Networking Academy</strong>
+							<p>Configuration, Adressage et Dépannage Réseau</p>
+							<span class="verify-tag">Vérifier les badges →</span>
+						</div>
+					</div>
+				</a>
 
-<a href="https://openbadgefactory.com/v1/assertion/dcc9bbc15479f615a5a736e278e4c4e4a7d33d81.html" target="_blank" class="cert-card">
-            <div class="cert-content">
-                <div class="cert-badge-icon school">🎓</div>
-                <div class="cert-info">
-                    <strong>Metz Numeric School</strong>
-                    <p>Initié au numérique By Num & Boost</p>
-                    <span class="verify-tag">Vérifier le badge →</span>
-                </div>
-            </div>
-        </a>
-	
-    
-</section>
+				<a href="https://openbadgefactory.com/v1/assertion/dcc9bbc15479f615a5a736e278e4c4e4a7d33d81.html" target="_blank" class="cert-card">
+					<div class="cert-content">
+						<div class="cert-badge-icon school">🎓</div>
+						<div class="cert-info">
+							<strong>Metz Numeric School</strong>
+							<p>Initié au numérique By Num & Boost</p>
+							<span class="verify-tag">Vérifier le badge →</span>
+						</div>
+					</div>
+				</a>
+			</div>
+		</section>
 	</main>
 
 	<footer>
@@ -269,9 +290,69 @@ const description = "Actuellement en formation à la Metz Numeric School";
 	}
 	.line { height: 1px; background: var(--card-border); flex-grow: 1; }
 
+	/* About Section avec Image */
+	.about-container {
+		display: grid;
+		grid-template-columns: 300px 1fr;
+		gap: 3rem;
+		align-items: center;
+		max-width: 950px;
+		margin: 0 auto;
+	}
+
+	.about-photo {
+		position: relative;
+		display: flex;
+		justify-content: center;
+	}
+
+/* Ce CSS cible directement l'image dans votre conteneur */
+.about-photo img {
+    /* Étape 1 : Assurer que l'image prend bien toute la place de sa colonne grid */
+    width: 300px; /* La largeur définie dans grid-template-columns */
+    height: 300px; /* Pour un rendu carré ou circulaire */
+    
+    /* Étape 2 : Le navigateur doit remplir la zone, mais l'image sera recadrée */
+    object-fit: cover; 
+
+    /* Étape 3 (LA SOLUTION) : Forcer le cadrage sur le haut de la photo */
+    /* Cela veut dire : "Affiche 0% horizontalement (centré), mais 0% verticalement (le haut)" */
+    object-position: 40% 0%; 
+    /* Ou plus simplement : object-position: top; */
+
+    /* Étape 4 (Esthétique - pour matcher votre style actuel) */
+    border-radius: 999px; /* Forme circulaire, plus humaine pour un portrait */
+    border: 3px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease;
+}
+
+/* Optionnel : Lueur bleue au survol de la photo */
+.about-photo:hover img {
+    border-color: var(--accent);
+    transform: translateY(-5px) scale(1.02);
+}
+
+	.photo-glow {
+		position: absolute;
+		width: 120%;
+		height: 120%;
+		background: radial-gradient(circle, rgba(0, 210, 255, 0.15), transparent 70%);
+		z-index: 0;
+	}
+
+	.about-content {
+		font-size: 1.15rem;
+		line-height: 1.8;
+		color: #a0a0a0;
+		text-align: left;
+	}
+
+	.about-content strong { color: var(--accent); }
+
 	/* Grid & Cards */
 	.grid {
-	text-align: center;
+		text-align: center;
 		display: grid;
 		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 		gap: 2rem;
@@ -299,112 +380,74 @@ const description = "Actuellement en formation à la Metz Numeric School";
 	}
 
 	/* Certifications */
-/* Container de la grille de certifs */
-.cert-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
-}
-
-.cert-card {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    padding: 1.5rem;
-    border-radius: 20px;
-    text-decoration: none;
-    color: inherit;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    display: block;
-    position: relative;
-    overflow: hidden;
-}
-
-/* État au survol pour le lien cliquable */
-.cert-card:not(.static):hover {
-    border-color: var(--accent);
-    background: rgba(0, 210, 255, 0.05);
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-}
-
-.cert-content {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-}
-
-.cert-badge-icon {
-    width: 60px;
-    height: 60px;
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-}
-
-.cert-badge-icon img {
-    width: 40px;
-    height: auto;
-}
-
-.cert-badge-icon.school {
-    font-size: 2rem;
-}
-
-.cert-info strong {
-    display: block;
-    font-size: 1.1rem;
-    color: #fff;
-    margin-bottom: 0.2rem;
-}
-
-.cert-info p {
-    margin: 0;
-    font-size: 0.9rem;
-    color: #a0a0a0;
-}
-
-.verify-tag {
-    display: inline-block;
-    margin-top: 0.8rem;
-    font-size: 0.75rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    color: var(--accent);
-    letter-spacing: 1px;
-}
-
-/* Version mobile */
-@media (max-width: 600px) {
-    .cert-content {
-        flex-direction: column;
-        text-align: center;
-    }
-    .cert-badge-icon {
-        margin-bottom: 1rem;
-    }
-}
-
-	.external-icon {
-		font-size: 1.2rem;
-		color: var(--accent);
-		opacity: 0.5;
-		transition: opacity 0.3s ease;
+	.cert-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		gap: 1.5rem;
 	}
-	.cert-item.clickable:hover .external-icon { opacity: 1; }
-	
-	/* Masquer la scrollbar pour Chrome, Safari et Opera */
-::-webkit-scrollbar {
-    display: none;
-}
 
-/* Masquer la scrollbar pour IE, Edge et Firefox */
-* {
-    -ms-overflow-style: none;  /* IE et Edge */
-    scrollbar-width: none;     /* Firefox */
-}
+	.cert-card {
+		background: var(--card-bg);
+		border: 1px solid var(--card-border);
+		padding: 1.5rem;
+		border-radius: 20px;
+		text-decoration: none;
+		color: inherit;
+		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+		display: block;
+		position: relative;
+		overflow: hidden;
+	}
+
+	.cert-card:hover {
+		border-color: var(--accent);
+		background: rgba(0, 210, 255, 0.05);
+		transform: translateY(-3px);
+		box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+	}
+
+	.cert-content {
+		display: flex;
+		align-items: center;
+		gap: 1.5rem;
+	}
+
+	.cert-badge-icon {
+		width: 60px;
+		height: 60px;
+		background: rgba(255, 255, 255, 0.03);
+		border-radius: 12px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		flex-shrink: 0;
+	}
+
+	.cert-badge-icon img { width: 40px; height: auto; }
+	.cert-badge-icon.school { font-size: 2rem; }
+
+	.cert-info strong {
+		display: block;
+		font-size: 1.1rem;
+		color: #fff;
+		margin-bottom: 0.2rem;
+	}
+
+	.cert-info p { margin: 0; font-size: 0.9rem; color: #a0a0a0; }
+
+	.verify-tag {
+		display: inline-block;
+		margin-top: 0.8rem;
+		font-size: 0.75rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		color: var(--accent);
+		letter-spacing: 1px;
+	}
+
+	/* Scrollbar Hiding */
+	::-webkit-scrollbar { display: none; }
+	* { -ms-overflow-style: none; scrollbar-width: none; }
 
 	/* Footer & Animations */
 	footer { margin-top: 10rem; padding-bottom: 4rem; text-align: center; color: #444; }
@@ -412,12 +455,66 @@ const description = "Actuellement en formation à la Metz Numeric School";
 	@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
 	@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 
-	@media (max-width: 600px) {
-		main { padding: 5rem 1.5rem 2rem 1.5rem; }
-		.actions { flex-direction: column; width: 100%; }
-		.btn { width: 100%; text-align: center; }
-		.section-header { margin-top: 4rem; flex-direction: column; align-items: flex-start; gap: 0.5rem; }
-		.cert-item { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
-		h1 { font-size: 2.5rem; }
+	@media (max-width: 900px) {
+		.about-container { grid-template-columns: 1fr; text-align: center; }
+		.about-content { text-align: left; }
+		.about-photo { margin-bottom: 1rem; }
 	}
+
+/* --- TABLETTES ET PETITS ÉCRANS (900px et moins) --- */
+@media (max-width: 900px) {
+    .about-container { 
+        grid-template-columns: 1fr; 
+        text-align: center; 
+        gap: 2rem;
+    }
+    .about-photo { margin-bottom: 1rem; }
+    /* On garde le texte de description à gauche pour la lisibilité */
+    .about-content { text-align: left; padding: 0 10px; }
+}
+
+/* --- SMARTPHONES (768px et moins) --- */
+@media (max-width: 768px) {
+    /* Centrage de tous les headers de section (À propos, Compétences, etc.) */
+    .section-header {
+        flex-direction: column;
+        align-items: center; /* CENTRE tout le monde */
+        text-align: center;
+        gap: 0.8rem;
+        margin-top: 5rem;
+        margin-bottom: 2.5rem;
+    }
+
+    .section-header h2 {
+        font-size: 1.8rem;
+        letter-spacing: -0.5px;
+        background: linear-gradient(to bottom, #ffffff, #a0a0a0);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    /* La petite barre dégradée centrée */
+    .section-header .line {
+        width: 40px;
+        height: 4px;
+        background: linear-gradient(90deg, var(--accent), var(--accent-2));
+        flex-grow: 0;
+        border-radius: 10px;
+    }
+}
+
+/* --- TRÈS PETITS ÉCRANS (600px et moins) --- */
+@media (max-width: 600px) {
+    main { padding: 4rem 1.5rem; }
+    
+    /* Boutons en plein écran pour faciliter le clic au pouce */
+    .actions { flex-direction: column; width: 100%; gap: 1rem; }
+    .btn { width: 100%; text-align: center; }
+    
+    h1 { font-size: 2.5rem; }
+    
+    .cert-content { flex-direction: column; text-align: center; }
+
+    /* Suppression de l'align-items: flex-start qui cassait le centrage précédent */
+}
 </style>

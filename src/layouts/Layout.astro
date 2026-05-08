@@ -2,7 +2,7 @@
 // src/layouts/Layout.astro
 interface Props {
 	title: string;
-	description?: string; // Le "?" veut dire que c'est optionnel
+	description?: string;
 }
 
 const { 
@@ -10,7 +10,6 @@ const {
 	description = "Bienvenue sur mon portfolio. Découvrez mes projets et mon parcours." 
 } = Astro.props;
 
-// On définit l'URL de l'image (assure-toi d'avoir preview.jpg dans ton dossier public/)
 const image = "https://romainmiazga.github.io/preview.jpg";
 ---
 
@@ -22,28 +21,31 @@ const image = "https://romainmiazga.github.io/preview.jpg";
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 
-		<!-- Balises SEO & Partage (Snapchat, etc.) -->
+		<!-- Balises SEO Fondamentales -->
 		<title>{title}</title>
 		<meta name="description" content={description} />
+		<link rel="canonical" href={Astro.url} />
+
+		<!-- Open Graph / Facebook / LinkedIn / Snapchat -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={Astro.url} />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
 		<meta property="og:image" content={image} />
-		<meta property="og:url" content={Astro.url} />
-		<meta property="og:type" content="website" />
 		
 		<!-- Twitter -->
 		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:url" content={Astro.url} />
 		<meta name="twitter:title" content={title} />
 		<meta name="twitter:description" content={description} />
 		<meta name="twitter:image" content={image} />
 	</head>
 	<body>
-		<slot /> <!-- C'est ici que le contenu de tes pages sera injecté -->
+		<slot />
 	</body>
 </html>
 
 <style is:global>
-	/* Tu peux mettre ici tes styles globaux (fonts, couleurs de base) */
 	:root {
 		font-family: sans-serif;
 	}

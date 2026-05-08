@@ -1,4 +1,5 @@
 ---
+import Layout from '../layouts/Layout.astro';
 import Navbar from '../components/Navbar.astro';
 ---
 
@@ -20,45 +21,46 @@ import Navbar from '../components/Navbar.astro';
         <p>Documentation technique de mes travaux à la Metz Numeric School et projets personnels.</p>
       </header>
 
-      <section class="project-detail">
-        
-        <div class="card">
-          <h2>💿 Clonezilla</h2>
-          <p>Sauvegarde et restauration avec CloneZilla sur VMware Workstation Pro</p>
-          <ul>
-            <li>Création d'une image disque avec CloneZilla </li>
-            <li>Restauration de l'image sur un nouveau poste client</li>
-          </ul>
-          <a href="/Procedure-CloneZilla-Romain_Miazga.pdf" class="btn-pdf" target="_blank">
-            Consulter la procédure (PDF) →
-          </a>
-        </div>
-        
-        <div class="card">
-          <h2>🗄️ TrueNAS SCALE</h2>
-          <p>Installation et configuration de TrueNAS SCALE</p>
-          <ul>
-            <li>Installation et configuration de TrueNAS SCALE</li>
-            <li>Gestion des utilisateurs et partages SMB</li>
-          </ul>
-          <a href="/Romain_Miazga-TrueNAS-ACL-SMB.pdf" class="btn-pdf" target="_blank">
-            Consulter la procédure (PDF) →
-          </a>
-        </div>
-        
-        <div class="card">
-          <h2>💾️ Gestion des disques / Diskpart</h2>
-          <p>Prise en main de l'outil de Gestion des disques et de Diskpart</p>
-          <ul>
-            <li>Création de volumes et de partitions</li>
-            <li>Automatisation des étapes de création de volumes à l'aide d'un script</li>
-          </ul>
-          <a href="/Procedure-gestion-des-disques.pdf" class="btn-pdf" target="_blank">
-            Consulter la procédure (PDF) →
-          </a>
-        </div>
+<section class="project-detail">
+  <div class="card">
+    <span class="badge">Déploiement & Sauvegarde</span>
+    <h2>💿 Clonezilla</h2>
+    <p>Sauvegarde et restauration avec CloneZilla sur VMware Workstation Pro</p>
+    <ul>
+      <li>Création d'une image disque complète</li>
+      <li>Restauration de l'image sur un nouveau poste client</li>
+    </ul>
+    <a href="/Procedure-CloneZilla-Romain_Miazga.pdf" class="btn-pdf" target="_blank" aria-label="Consulter la procédure PDF pour Clonezilla">
+      Consulter la procédure (PDF) →
+    </a>
+  </div>
 
-      </section>
+  <div class="card">
+    <span class="badge">Infrastructure & Stockage</span>
+    <h2>🗄️ TrueNAS SCALE</h2>
+    <p>Installation et configuration d'un serveur de stockage réseau</p>
+    <ul>
+      <li>Configuration du système et des pools de stockage</li>
+      <li>Gestion fine des utilisateurs et des partages SMB via ACL</li>
+    </ul>
+    <a href="/Romain_Miazga-TrueNAS-ACL-SMB.pdf" class="btn-pdf" target="_blank" aria-label="Consulter la procédure PDF pour TrueNAS">
+      Consulter la procédure (PDF) →
+    </a>
+  </div>
+
+  <div class="card">
+    <span class="badge">Système & Scripting</span>
+    <h2>💾️ Gestion des disques / Diskpart</h2>
+    <p>Prise en main de l'outil de Gestion des disques et de Diskpart</p>
+    <ul>
+      <li>Création et optimisation de volumes et de partitions</li>
+      <li>Automatisation des étapes de création via script .txt</li>
+    </ul>
+    <a href="/Procedure-gestion-des-disques.pdf" class="btn-pdf" target="_blank" aria-label="Consulter la procédure PDF pour Diskpart">
+      Consulter la procédure (PDF) →
+    </a>
+  </div>
+</section>
     </main>
 		<footer>
 		<p>© {new Date().getFullYear()} — Romain Miazga • Fameck (57)</p>
@@ -171,6 +173,33 @@ import Navbar from '../components/Navbar.astro';
     pointer-events: none;
     z-index: -1;
   }
+  
+  .badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 5px 12px;
+  background: rgba(255, 255, 255, 0.05);
+  color: #888;
+  border-radius: 100px; /* Effet pillule */
+  margin-bottom: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.card:hover .badge {
+  color: #00d2ff;
+  border-color: #00d2ff;
+  background: rgba(0, 210, 255, 0.05);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* Aligne le badge et le bouton à gauche */
+}
   
   	/* Masquer la scrollbar pour Chrome, Safari et Opera */
 ::-webkit-scrollbar {
