@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Status from '../components/Status.astro';
 
 // Données extraites
 const name = "Romain Miazga";
@@ -14,6 +15,7 @@ const description = "Actuellement en formation à la Metz Numeric School";
 		<header class="hero">
 			<div class="badge">Bienvenue sur mon Portfolio</div>
 			<h1>{name}</h1>
+
 			<p class="tagline">{jobTitle}</p>
 			<p class="bio">{description}</p>
 			
@@ -439,6 +441,8 @@ const description = "Actuellement en formation à la Metz Numeric School";
 		letter-spacing: 1px;
 	}
 	
+
+	
 	/* --- ANIMATIONS AU SCROLL --- */
 .hidden-scroll {
     opacity: 0;
@@ -459,6 +463,7 @@ const description = "Actuellement en formation à la Metz Numeric School";
 
 .cert-grid .cert-card:nth-child(1) { transition-delay: 0.1s; }
 .cert-grid .cert-card:nth-child(2) { transition-delay: 0.2s; }
+	
 	
 
 	/* Scrollbar Hiding */

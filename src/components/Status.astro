@@ -1,0 +1,99 @@
+<div id="status-container" class="status-widget">
+    <div class="status-indicator">
+        <span id="status-dot" class="dot"></span>
+        <span id="status-text">Vérification...</span>
+    </div>
+    <div class="status-details">
+        <span id="status-uptime">--</span>
+    </div>
+</div>
+
+<script>
+    const API_KEY = 'm803035796-e31def3ecd561827d56768e7'; 
+
+    async function checkStatus() {
+        const dot = document.getElementById('status-dot');
+        const text = document.getElementById('status-text');
+        const uptimeText = document.getElementById('status-uptime');
+
+        try {
+            const response = await fetch('https://api.uptimerobot.com/v2/getMonitors', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ api_key: API_KEY, format: 'json' })
+            });
+
+            const data = await response.json();
+            const monitor = data.monitors[0];
+
+            if (monitor.status === 2) {
+                dot.style.background = '#00ff88';
+                dot.style.boxShadow = '0 0 10px #00ff88';
+                text.innerText = 'Système Opérationnel';
+                // Arrondi à 2 décimales pour rester propre sur une ligne
+                uptimeText.innerText = `${parseFloat(monitor.all_time_uptime_ratio).toFixed(2)}% Uptime`;
+            } else {
+                dot.style.background = '#ff4444';
+                text.innerText = 'Maintenance en cours';
+            }
+        } catch (error) {
+            text.innerText = 'Status Indisponible';
+        }
+    }
+
+    checkStatus();
+    setInterval(checkStatus, 60000);
+</script>
+
+<style>
+.status-widget {
+    display: inline-flex; /* CHANGEMENT ICI : Empêche de prendre toute la largeur */
+    flex-direction: row; 
+    align-items: center;
+    justify-content: center; 
+    gap: 15px;
+    padding: 8px 15px;
+    border-radius: 20px; 
+    font-family: monospace;
+    margin: 25px auto 0 auto;
+    background: #121212; 
+    border: 1px solid #333; 
+}
+
+    .status-indicator {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: #555;
+        animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+        0% { transform: scale(1); opacity: 1; }
+        50% { transform: scale(1.5); opacity: 0.7; }
+        100% { transform: scale(1); opacity: 1; }
+    }
+
+    #status-text {
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: #fff;
+        white-space: nowrap; /* Évite que le texte passe à la ligne */
+    }
+
+    .status-details {
+	    margin-top: 20px; /* Ajuste le nombre de pixels selon tes besoins */
+        font-size: 0.7rem; 
+        color: #888;
+        border-left: 1px solid #444; /* Séparateur vertical */
+        padding-left: 15px;
+        display: flex;
+        align-items: center;
+    }
+</style>

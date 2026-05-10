@@ -1,6 +1,7 @@
 ---
 // Ici, on peut mettre de la logique JavaScript si besoin
 const currentYear = new Date().getFullYear();
+import Status from './Status.astro';
 ---
 
 <footer>
@@ -12,6 +13,7 @@ const currentYear = new Date().getFullYear();
         <a href="mailto:romain.miazga@gmail.com">Contact</a>
     </div>
     <p>© {currentYear} — Romain Miazga • Technicien Informatique en Formation • Fameck </p>
+	<Status />
 </footer>
 
 <style>
