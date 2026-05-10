@@ -40,8 +40,9 @@ Si vous souhaitez faire tourner ce projet en local sur votre machine :
    
 2.  **Installer les dépendances :**
 
-```bash
-cd RomainMiazga.github.io
+   ```bash
+    cd RomainMiazga.github.io
+	
 ```bash
 npm install
 
@@ -53,6 +54,7 @@ npm run dev
 Le site sera accessible sur http://localhost:4321/.
 
 Contact
+
 LinkedIn : Romain Miazga
 Email : romain.miazga@gmail.com
 
