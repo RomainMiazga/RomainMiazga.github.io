@@ -12,37 +12,19 @@ const {
 
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
-// 1. IMPORT DES VIEW TRANSITIONS
+import BaseHead from '../components/BaseHead.astro'; // <-- Import
 import { ClientRouter } from 'astro:transitions';
 
-const image = "https://romainmiazga.github.io/preview.jpg";
+const image = "https://romainmiazga.com/preview.jpg";
 ---
 
 <!doctype html>
 <html lang="fr">
 	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-
-		<meta name="theme-color" content="#050505" />
-
-		<title>{title}</title>
-		<meta name="description" content={description} />
-		<link rel="canonical" href={Astro.url} />
-
-		<meta property="og:type" content="website" />
-		<meta property="og:url" content={Astro.url} />
-		<meta property="og:title" content={title} />
-		<meta property="og:description" content={description} />
-		<meta property="og:image" content={image} />
+		<BaseHead title={title} description={description} image={image} />
 		
-		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:url" content={Astro.url} />
-		<meta name="twitter:title" content={title} />
-		<meta name="twitter:description" content={description} />
-		<meta name="twitter:image" content={image} />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="theme-color" content="#050505" />
 		
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -55,11 +37,11 @@ const image = "https://romainmiazga.github.io/preview.jpg";
 
 		<slot />
 
-
-
 		<Footer />
+
 <script>
-function initScrollAnimations() {
+    // Ton script d'animation parfait reste ici...
+    function initScrollAnimations() {
         const observer = new IntersectionObserver((entries) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
@@ -71,76 +53,17 @@ function initScrollAnimations() {
             rootMargin: "0px 0px -50px 0px"
         });
 
-        // On cherche tous les éléments cachés sur la NOUVELLE page
         const hiddenElements = document.querySelectorAll('.hidden-scroll');
-        
-        // On relance la surveillance
         hiddenElements.forEach((el) => observer.observe(el));
     }
 
-    // 1. S'exécute au premier chargement du site
     initScrollAnimations();
-
-    // 2. S'exécute à CHAQUE fois que tu cliques sur un lien du menu (Spécifique Astro)
     document.addEventListener('astro:page-load', initScrollAnimations);
-	</script>
+</script>
 		
 	</body>
 </html>
 
 <style is:global>
-	/* VARIABLES GLOBALES */
-	:root {
-		--accent: #00d2ff;       /* Ton bleu fluo */
-		--bg-dark: #050505;      /* Ton fond noir */
-		--text-main: #ffffff;    /* Texte blanc */
-		--text-muted: #a0a0a0;   /* Texte gris clair */
-	}
-
-	/* COMPORTEMENT GLOBAL */
-	html {
-		scroll-behavior: smooth; /* Glissement fluide pour les ancres (#) */
-	}
-
-	body {
-		margin: 0;
-		padding: 0;
-		font-family: 'Plus Jakarta Sans', sans-serif;
-		background-color: var(--bg-dark);
-		color: var(--text-main);
-		line-height: 1.6; /* Améliore la lisibilité des paragraphes */
-	}
-
-	/* PERSONNALISATION DE LA SÉLECTION DE TEXTE */
-	::selection {
-		background-color: var(--accent);
-		color: var(--bg-dark); /* Texte sombre sur fond bleu fluo quand on sélectionne */
-	}
-
-	/* PERSONNALISATION DE LA BARRE DE DÉFILEMENT (Scrollbar) */
-	::-webkit-scrollbar {
-		width: 10px;
-	}
-	::-webkit-scrollbar-track {
-		background: var(--bg-dark);
-	}
-	::-webkit-scrollbar-thumb {
-		background: #333;
-		border-radius: 5px;
-	}
-	::-webkit-scrollbar-thumb:hover {
-		background: var(--accent);
-	}
-	
-	/* --- ANIMATIONS AU SCROLL --- */
-	.hidden-scroll {
-		opacity: 0;
-		transform: translateY(30px);
-		transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-	}
-
-	.show-scroll {
-		opacity: 1;
-		transform: translateY(0);
-	}
+	/*  */
 </style>
