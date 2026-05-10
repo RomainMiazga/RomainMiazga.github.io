@@ -20,24 +20,35 @@
             const response = await fetch('https://api.uptimerobot.com/v2/getMonitors', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ api_key: API_KEY, format: 'json' })
+                body: JSON.stringify({ 
+                    api_key: API_KEY, 
+                    format: 'json',
+                    custom_uptime_ratios: '30' // Demande le ratio des 30 derniers jours
+                })
             });
 
             const data = await response.json();
-            const monitor = data.monitors[0];
+            
+            if (data.monitors && data.monitors.length > 0) {
+                const monitor = data.monitors[0];
 
-            if (monitor.status === 2) {
-                dot.style.background = '#00ff88';
-                dot.style.boxShadow = '0 0 10px #00ff88';
-                text.innerText = 'Système Opérationnel';
-                // Arrondi à 2 décimales pour rester propre sur une ligne
-                uptimeText.innerText = `${parseFloat(monitor.all_time_uptime_ratio).toFixed(2)}% Uptime`;
-            } else {
-                dot.style.background = '#ff4444';
-                text.innerText = 'Maintenance en cours';
+                if (monitor.status === 2) {
+                    dot.style.background = '#00ff88';
+                    dot.style.boxShadow = '0 0 10px #00ff88';
+                    text.innerText = 'Système Opérationnel';
+                    
+                    // On essaie d'abord le ratio global, sinon le ratio personnalisé
+                    const ratio = monitor.all_time_uptime_ratio || monitor.custom_uptime_ratio || 0;
+                    uptimeText.innerText = `${parseFloat(ratio).toFixed(2)}% Uptime`;
+                } else {
+                    dot.style.background = '#ff4444';
+                    dot.style.boxShadow = '0 0 10px #ff4444';
+                    text.innerText = 'Maintenance en cours';
+                    uptimeText.innerText = 'Offline';
+                }
             }
         } catch (error) {
-            text.innerText = 'Status Indisponible';
+            text.innerText = 'Indisponible';
         }
     }
 
@@ -46,19 +57,22 @@
 </script>
 
 <style>
-.status-widget {
-    display: inline-flex; /* CHANGEMENT ICI : Empêche de prendre toute la largeur */
-    flex-direction: row; 
-    align-items: center;
-    justify-content: center; 
-    gap: 15px;
-    padding: 8px 15px;
-    border-radius: 20px; 
-    font-family: monospace;
-    margin: 25px auto 0 auto;
-    background: #121212; 
-    border: 1px solid #333; 
-}
+    .status-widget {
+        display: inline-flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        padding: 8px 15px;
+        border-radius: 20px;
+        font-family: monospace;
+        
+        /* C'est ici qu'on descend le badge entier */
+        margin: 40px auto 10px auto; 
+        
+        background: #121212;
+        border: 1px solid #333;
+    }
 
     .status-indicator {
         display: flex;
@@ -84,14 +98,13 @@
         font-size: 0.8rem;
         font-weight: 600;
         color: #fff;
-        white-space: nowrap; /* Évite que le texte passe à la ligne */
+        white-space: nowrap;
     }
 
     .status-details {
-	    margin-top: 20px; /* Ajuste le nombre de pixels selon tes besoins */
-        font-size: 0.7rem; 
+        font-size: 0.7rem;
         color: #888;
-        border-left: 1px solid #444; /* Séparateur vertical */
+        border-left: 1px solid #444;
         padding-left: 15px;
         display: flex;
         align-items: center;
