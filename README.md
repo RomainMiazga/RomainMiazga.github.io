@@ -1,43 +1,55 @@
-# Astro Starter Kit: Minimal
+# 👨‍💻 Portfolio | Romain Miazga
 
-```sh
-npm create astro@latest -- --template minimal
-```
+> **Technicien Informatique de Proximité en formation à la Metz Numeric School.**
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+![Aperçu du Portfolio](https://romainmiazga.github.io/preview.jpg)
 
-## 🚀 Project Structure
+Bienvenue sur le code source de mon portfolio personnel. Ce projet a été développé de A à Z pour présenter mes compétences systèmes, réseaux et support, ainsi que mes réalisations techniques.
 
-Inside of your Astro project, you'll see the following folders and files:
+🌍 **Voir le site en ligne :** [romainmiazga.github.io](https://romainmiazga.github.io)
+---
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+## 🛠️ Stack Technique
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+Plutôt que d'utiliser un CMS classique (comme WordPress), j'ai fait le choix de développer ce site "from scratch" pour garantir des performances optimales et prouver ma curiosité technique :
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+- **Framework :** [Astro](https://astro.build/) (Génération de site statique ultra-rapide)
+- **Langages :** HTML5, CSS3, JavaScript (Vanilla)
+- **Contenu :** Fichiers Markdown (`.md`) pour la gestion dynamique des projets
+- **Hébergement :** GitHub Pages
 
-Any static assets, like images, can be placed in the `public/` directory.
+---
 
-## 🧞 Commands
+## ✨ Fonctionnalités clés
 
-All commands are run from the root of the project, from a terminal:
+- ⚡ **Astro View Transitions :** Navigation fluide entre les pages sans rechargement complet (SPA-like).
+- 🟢 **Monitoring API (UptimeRobot) :** Intégration côté client d'une API pour vérifier et afficher le statut de mes services en temps réel.
+- 📱 **Responsive Design :** Interface "Glassmorphism" entièrement adaptée aux écrans mobiles et tablettes.
+- 🗂️ **Génération dynamique :** Les projets sont générés automatiquement à partir de collections Markdown, ce qui facilite les futures mises à jour.
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+---
 
-## 👀 Want to learn more?
+## 🚀 Installation & Déploiement (Local)
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Si vous souhaitez faire tourner ce projet en local sur votre machine :
+
+
+1. **Cloner le dépôt :**
+   ```bash
+   git clone [https://github.com/RomainMiazga/RomainMiazga.github.io.git](https://github.com/RomainMiazga/RomainMiazga.github.io.git)
+   
+2.  **Installer les dépendances :**
+
+cd RomainMiazga.github.io
+npm install
+
+3. Lancer le serveur de développement :
+
+npm run dev
+Le site sera accessible sur http://localhost:4321/.
+
+Contact
+LinkedIn : Romain Miazga
+Email : romain.miazga@gmail.com
+
+Ce projet est open-source et sert de démonstration technique dans le cadre de ma recherche de stage/alternance.
