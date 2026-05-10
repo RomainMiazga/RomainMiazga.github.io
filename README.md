@@ -1,46 +1,130 @@
-👨‍💻 Portfolio | Romain Miazga
-Technicien Informatique de Proximité en formation à la Metz Numeric School.
+# 👨‍💻 Portfolio | Romain Miazga
 
-Bienvenue sur le code source de mon portfolio personnel. Ce projet a été développé pour présenter mes compétences systèmes, réseaux et support, ainsi que mes réalisations techniques.
+> Technicien Informatique de Proximité en formation à la  
+> **Metz Numeric School**
 
-🌍 Voir le site en ligne : romainmiazga.github.io
+Bienvenue sur le dépôt GitHub de mon portfolio personnel.  
+Ce projet a été conçu pour présenter mes compétences en **systèmes**, **réseaux**, **support informatique** ainsi que mes différentes réalisations techniques.
 
-🛠️ Stack Technique
-Plutôt que d'utiliser un CMS classique (comme WordPress), j'ai fait le choix de développer ce site pour garantir des performances optimales et prouver ma curiosité technique :
+---
 
-Framework : Astro (Génération de site statique ultra-rapide)
+## 🌍 Site en ligne
 
-Langages : HTML5, CSS3, JavaScript (Vanilla)
+🔗 https://romainmiazga.github.io
 
-Contenu : Fichiers Markdown pour la gestion dynamique des projets
+---
 
-Hébergement : GitHub Pages
+# 🛠️ Stack Technique
 
-✨ Fonctionnalités clés
-⚡ Astro View Transitions : Navigation fluide entre les pages sans rechargement complet.
+Plutôt que d'utiliser un CMS classique comme **WordPress**, j’ai choisi de développer ce portfolio avec une approche moderne et performante afin de :
 
-🟢 Monitoring API (UptimeRobot) : Intégration côté client d'une API pour vérifier et afficher le statut de mes services en temps réel.
+- garantir un chargement ultra-rapide 🚀
+- améliorer l’expérience utilisateur ✨
+- démontrer ma curiosité technique et mes compétences en développement ⚙️
 
-📱 Responsive Design : Interface "Glassmorphism" entièrement adaptée aux écrans mobiles et tablettes.
+### Technologies utilisées
 
-🗂️ Génération dynamique : Les projets sont générés automatiquement à partir de collections Markdown.
+| Technologie | Description |
+|---|---|
+| **Astro** | Génération de site statique ultra-performante |
+| **HTML5 / CSS3** | Structure et design responsive |
+| **JavaScript (Vanilla)** | Interactivité côté client |
+| **Markdown** | Gestion dynamique des projets |
+| **GitHub Pages** | Hébergement du site |
 
-🚀 Installation & Déploiement (Local)
-Si vous souhaitez faire tourner ce projet en local sur votre machine :
+---
 
-Cloner le dépôt :
+# ✨ Fonctionnalités
+
+## ⚡ Navigation fluide avec Astro View Transitions
+Transitions modernes entre les pages sans rechargement complet pour une navigation rapide et agréable.
+
+## 🟢 Monitoring API (UptimeRobot)
+Intégration d’une API permettant d’afficher en temps réel l’état de disponibilité de mes services.
+
+## 📱 Responsive Design
+Interface moderne avec effet **Glassmorphism**, optimisée pour :
+
+- 💻 Ordinateurs
+- 📱 Smartphones
+- 📟 Tablettes
+
+## 🗂️ Génération dynamique des projets
+Les projets sont automatiquement générés à partir de collections Markdown pour simplifier la maintenance du portfolio.
+
+---
+
+# 🚀 Installation & Développement local
+
+## 1️⃣ Cloner le dépôt
+
+```bash
 git clone https://github.com/RomainMiazga/RomainMiazga.github.io.git
 cd RomainMiazga.github.io
+```
 
-Installer les dépendances :
+## 2️⃣ Installer les dépendances
+
+```bash
 npm install
+```
 
-Lancer le serveur de développement :
+## 3️⃣ Lancer le serveur de développement
+
+```bash
 npm run dev
+```
 
-Le site sera alors accessible sur http://localhost:4321/
+Le site sera accessible sur :
 
-📬 Contact
-LinkedIn : https://www.linkedin.com/in/romain-miazga
+```bash
+http://localhost:4321/
+```
 
-Email : romain.miazga@gmail.com
+---
+
+# 📦 Build de production
+
+Pour générer la version de production :
+
+```bash
+npm run build
+```
+
+Prévisualisation locale du build :
+
+```bash
+npm run preview
+```
+
+---
+
+# 📸 Aperçu
+
+```txt
+✔ Portfolio moderne
+✔ Design responsive
+✔ Performances optimisées
+✔ Génération statique avec Astro
+✔ Intégration API temps réel
+```
+
+---
+
+# 📬 Contact
+
+## 🔗 LinkedIn
+https://www.linkedin.com/in/romain-miazga
+
+## 📧 Email
+
+```txt
+romain.miazga@gmail.com
+```
+
+---
+
+# ⭐ Remerciements
+
+Merci d’avoir pris le temps de visiter ce projet.  
+N’hésitez pas à laisser une ⭐ sur le dépôt si le portfolio vous plaît !
