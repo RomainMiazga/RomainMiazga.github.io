@@ -65,5 +65,34 @@ const image = "https://romainmiazga.com/preview.jpg";
 </html>
 
 <style is:global>
-	/*  */
+    /* 1. Largeur et apparence générale */
+    ::-webkit-scrollbar {
+	    display: block !important;
+        width: 10px; /* Un peu plus large pour être bien cliquable */
+        height: 10px;
+    }
+
+    /* 2. Le fond (la piste) */
+    ::-webkit-scrollbar-track {
+        background: #050505; /* Noir profond comme ton site */
+    }
+
+    /* 3. Le curseur (la partie qui bouge) */
+    ::-webkit-scrollbar-thumb {
+        background: linear-gradient(to bottom, #00d2ff, #3a7bd5); /* Ton dégradé bleu */
+        border-radius: 100px;
+        border: 2px solid #050505; /* Crée une petite bordure pour un effet "pilule" */
+    }
+
+    /* 4. Effet au survol */
+    ::-webkit-scrollbar-thumb:hover {
+        background: #00d2ff;
+        box-shadow: 0 0 15px rgba(0, 210, 255, 0.4);
+    }
+
+    /* 5. Support pour Firefox */
+    * {
+        scrollbar-width: thin;
+        scrollbar-color: #00d2ff #050505;
+    }
 </style>
