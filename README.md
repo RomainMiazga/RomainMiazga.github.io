@@ -124,7 +124,7 @@ romain.miazga@gmail.com
 
 ---
 
-# ⭐ Remerciements
+# Remerciements
 
 Merci d’avoir pris le temps de visiter ce projet.  
-N’hésitez pas à laisser une ⭐ sur le dépôt si le portfolio vous plaît !
+N’hésitez pas à laisser une ☆ sur le dépôt si le portfolio vous plaît !
