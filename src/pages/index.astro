@@ -1,21 +1,26 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Status from '../components/Status.astro';
-
+import { getCollection } from 'astro:content';
 // Données extraites
 const name = "Romain Miazga";
 const jobTitle = "Technicien Informatique de Proximité";
 const description = "Actuellement en formation à la Metz Numeric School";
+const allProjects = await getCollection('projects');
+// Fonction pour mélanger le tableau de manière aléatoire
+const shuffled = allProjects.sort(() => Math.random() - 0.5);
+// On prend les 3 premiers du tableau une fois mélangé
+const featuredProjects = shuffled.slice(0, 3);
 ---
 
 <Layout title={`${name} | Technicien Informatique`} description={description}>
 	<div class="glow-overlay"></div>
 
 	<main>
+	
 		<header class="hero">
-			
+		
 			<h1>{name}</h1>
-
 			<p class="tagline">{jobTitle}</p>
 			<p class="bio">{description}</p>
 			
@@ -137,7 +142,7 @@ const description = "Actuellement en formation à la Metz Numeric School";
 				<div class="card hidden-scroll">
 					<div class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock-check-icon lucide-clock-check"><path d="M12 6v6l4 2"/><path d="M22 12a10 10 0 1 0-11 9.95"/><path d="m22 16-5.5 5.5L14 19"/></svg></div>
 					<h3>Rigueur & Ponctualité</h3>
-					<p>Sens des responsabilités, gestion des priorités et respect strict des protocoles d'intervention.</p>
+					<p>Sens des responsabilités, gestion des priorités et respect des protocoles d'intervention.</p>
 				</div>
 			</div>
 		</section>
@@ -164,7 +169,9 @@ const description = "Actuellement en formation à la Metz Numeric School";
 
 				<a href="https://openbadgefactory.com/v1/assertion/dcc9bbc15479f615a5a736e278e4c4e4a7d33d81.html" target="_blank" class="cert-card">
 					<div class="cert-content hidden-scroll">
-						<div class="cert-badge-icon school">🎓</div>
+					<div class="cert-badge-icon">
+						<img src="https://www.eureka-education.fr/wp-content/uploads/2024/05/Groupe-de-masques-29@2x.webp" alt="MNS" />
+						</div>
 						<div class="cert-info">
 							<strong>Metz Numeric School</strong>
 							<p>Initié au numérique By Num & Boost</p>
@@ -174,6 +181,32 @@ const description = "Actuellement en formation à la Metz Numeric School";
 				</a>
 			</div>
 		</section>
+		<section class="featured-projects hidden-scroll">
+    <div class="section-header hidden-scroll">
+        <h2>Procédures & Projets</h2>
+	
+       <div class="line"></div>
+    </div>
+
+    <div class="projects-grid hidden-scroll">
+        {featuredProjects.map((project) => (
+            <a href={project.data.pdfLink} class="mini-card" target="_blank" rel="noopener noreferrer">
+                <div class="mini-card-content hidden-scroll">
+                    <span class="mini-badge">{project.data.badge}</span>
+                    <h3>{project.data.title}</h3>
+                    <p>{project.data.description.substring(0, 80)}...</p>
+                </div>
+                <div class="arrow">→</div>
+            </a>
+        ))}
+    </div>
+
+    <div class="cta-container hidden-scroll">
+        <a href="/projets" class="btn-secondary">
+            Voir tous mes projets et procédures
+        </a>
+    </div>
+</section>
 	</main>
 
 </Layout>
@@ -451,6 +484,95 @@ const description = "Actuellement en formation à la Metz Numeric School";
 		color: var(--accent);
 		letter-spacing: 1px;
 	}
+	
+	.featured-projects {
+    margin-top: 8rem;
+    padding-bottom: 4rem;
+}
+
+.section-header {
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.mini-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    padding: 1.5rem;
+    text-decoration: none;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    transition: all 0.3s ease;
+}
+
+.mini-card:hover {
+    background: rgba(0, 210, 255, 0.05);
+    border-color: var(--accent);
+    transform: translateY(-5px);
+}
+
+.mini-card h3 {
+    margin: 0.5rem 0;
+    font-size: 1.2rem;
+}
+
+.mini-card p {
+    color: #888;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.mini-badge {
+    font-size: 0.6rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+}
+
+.arrow {
+    color: var(--accent);
+    font-size: 1.5rem;
+    opacity: 0.5;
+    transition: 0.3s;
+}
+
+.mini-card:hover .arrow {
+    opacity: 1;
+    transform: translateX(5px);
+}
+
+.cta-container {
+    text-align: center;
+}
+
+.btn-secondary {
+    display: inline-block;
+    padding: 1rem 2rem;
+    border-radius: 12px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.btn-secondary:hover {
+    border-color: var(--accent);
+    background: rgba(0, 210, 255, 0.05);
+}
+
+
 	
 
 	
