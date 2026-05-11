@@ -18,9 +18,9 @@ Ce projet a été conçu pour présenter mes compétences en **systèmes**, **r�
 
 Plutôt que d'utiliser un CMS classique comme **WordPress**, j’ai choisi de développer ce portfolio avec une approche moderne et performante afin de :
 
-- garantir un chargement ultra-rapide 🚀
-- améliorer l’expérience utilisateur ✨
-- démontrer ma curiosité technique et mes compétences en développement ⚙️
+- garantir un chargement ultra-rapide 
+- améliorer l’expérience utilisateur 
+- démontrer ma curiosité technique et mes compétences en développement 
 
 ### Technologies utilisées
 
@@ -34,7 +34,7 @@ Plutôt que d'utiliser un CMS classique comme **WordPress**, j’ai choisi de d�
 
 ---
 
-# ✨ Fonctionnalités
+#   Fonctionnalités
 
 ## ⚡ Navigation fluide avec Astro View Transitions
 Transitions modernes entre les pages sans rechargement complet pour une navigation rapide et agréable.
@@ -45,9 +45,9 @@ Intégration d’une API permettant d’afficher en temps réel l’état de dis
 ## 📱 Responsive Design
 Interface moderne avec effet **Glassmorphism**, optimisée pour :
 
-- 💻 Ordinateurs
-- 📱 Smartphones
-- 📟 Tablettes
+- Ordinateurs
+- Smartphones
+- Tablettes
 
 ## 🗂️ Génération dynamique des projets
 Les projets sont automatiquement générés à partir de collections Markdown pour simplifier la maintenance du portfolio.
