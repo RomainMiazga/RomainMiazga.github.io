@@ -1,6 +1,7 @@
 ---
 badge: "Administration Système"
-title: "👤 Gestion des Comptes & Sécurisation des Fichiers"
+title: "Gestion des Comptes & Sécurisation des Fichiers"
+icon: "user" 
 description: "Configuration des GPO locales et gestion des droits d'accès NTFS"
 bullets:
   - "Mise en œuvre des stratégies de groupe locales (GPO)"

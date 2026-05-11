@@ -1,6 +1,7 @@
 ---
 badge: "Déploiement & Sauvegarde"
-title: "💿 Clonezilla"
+title: "Clonezilla"
+icon: "disc" 
 description: "Sauvegarde et restauration avec CloneZilla sur VMware Workstation Pro"
 bullets:
   - "Création d'une image disque complète"

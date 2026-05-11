@@ -7,6 +7,17 @@ const allProjects = await getCollection('projects');
 
 // On les trie selon le numéro "order" défini dans les fichiers .md
 const sortedProjects = allProjects.sort((a, b) => a.data.order - b.data.order);
+
+// Dictionnaire des icônes (Chemins SVG Lucide)
+const iconMap = {
+  disc: '<circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="3"/>',
+  network: '<rect x="16" y="16" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><path d="M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3"/><path d="M12 12V8"/>',
+  server: '<rect width="20" height="8" x="2" y="2" rx="2" ry="2"/><rect width="20" height="8" x="2" y="14" rx="2" ry="2"/><line x1="6" x2="6.01" y1="6" y2="6"/><line x1="6" x2="6.01" y1="18" y2="18"/>',
+  save: '<path d="M15.2 3a2 2 0 0 1 1.4.6l3.8 3.8a2 2 0 0 1 .6 1.4V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/><path d="M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7"/><path d="M7 3v4a1 1 0 0 0 1 1h7"/>',
+  user: '<circle cx="10" cy="8" r="5"/><path d="M2 21a8 8 0 0 1 10.434-7.62"/><circle cx="18" cy="18" r="3"/><path d="M18 14v1"/><path d="M18 21v1"/><path d="M21.5 18h-1"/><path d="M15.5 18h-1"/>',
+  script: '<path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"/><path d="M14 2v5a1 1 0 0 0 1 1h5"/><path d="m8 16 2-2-2-2"/><path d="M12 18h4"/></svg>',
+  gpo: '<path d="M10 15H6a4 4 0 0 0-4 4v2"/><path d="m14.305 16.53.923-.382"/><path d="m15.228 13.852-.923-.383"/><path d="m16.852 12.228-.383-.923"/><path d="m16.852 17.772-.383.924"/><path d="m19.148 12.228.383-.923"/><path d="m19.53 18.696-.382-.924"/><path d="m20.772 13.852.924-.383"/><path d="m20.772 16.148.924.383"/><circle cx="18" cy="15" r="3"/><circle cx="9" cy="7" r="4"/></svg>',
+};
 ---
 
 <Layout title="Romain Miazga | Réalisations & Lab">
@@ -19,39 +30,59 @@ const sortedProjects = allProjects.sort((a, b) => a.data.order - b.data.order);
         </header>
 
         <section class="project-detail">
-{sortedProjects.map((project) => (
-    <div class="card hidden-scroll">
-        {project.data.image && (
-            <div class="card-image">
-                <img src={project.data.image} alt={project.data.title} />
-            </div>
-        )}
-        
-        <div class="card-content">
-            <span class="badge">{project.data.badge}</span>
-            <h2>{project.data.title}</h2>
-            <p>{project.data.description}</p>
-            
-            <ul>
-                {project.data.bullets.map((bullet) => (
-                    <li>{bullet}</li>
-                ))}
-            </ul>
+            {sortedProjects.map((project) => (
+                <div class="card hidden-scroll">
+                    {project.data.image && (
+                        <div class="card-image">
+                            <img src={project.data.image} alt={project.data.title} />
+                        </div>
+                    )}
+                    
+                    <div class="card-content">
+                        <div class="card-header">
+                            <div class="title-wrapper">
+                                <svg 
+                                    xmlns="http://www.w3.org/2000/svg" 
+                                    width="24" height="24" 
+                                    viewBox="0 0 24 24" 
+                                    fill="none" 
+                                    stroke="currentColor" 
+                                    stroke-width="2.5" 
+                                    stroke-linecap="round" 
+                                    stroke-linejoin="round" 
+                                    class="project-icon-inline"
+                                    set:html={iconMap[project.data.icon] || iconMap.disc}
+                                />
+                                <h2>{project.data.title}</h2>
+                            </div>
+                            <span class="badge">{project.data.badge}</span>
+                        </div>
 
-            <a href={project.data.pdfLink} class="btn-pdf" target="_blank">
-                Consulter la procédure (PDF) →
-            </a>
-        </div>
-    </div>
-))}
+                        <p class="project-desc">{project.data.description}</p>
+                        
+                        <ul>
+                            {project.data.bullets.map((bullet) => (
+                                <li>{bullet}</li>
+                            ))}
+                        </ul>
+
+                        <a href={project.data.pdfLink} class="btn-pdf" target="_blank">
+                            Consulter la procédure (PDF) →
+                        </a>
+                    </div>
+                </div>
+            ))}
         </section>
     </main>
 </Layout>
 
 <style is:global>
-    * { 
-        box-sizing: border-box; 
+    :root {
+        --accent: #00d2ff;
+        --accent-2: #3a7bd5;
     }
+
+    * { box-sizing: border-box; }
     
     body { 
         background: #050505; 
@@ -66,9 +97,7 @@ const sortedProjects = allProjects.sort((a, b) => a.data.order - b.data.order);
         padding: 8rem 2rem; 
     }
     
-    header {
-        animation: fadeIn 0.8s ease-out forwards;
-    }
+    header { animation: fadeIn 0.8s ease-out forwards; }
     
     h1 { 
         font-size: clamp(3rem, 8vw, 5rem); 
@@ -82,16 +111,13 @@ const sortedProjects = allProjects.sort((a, b) => a.data.order - b.data.order);
     }
     
     h1 span { 
-        background: linear-gradient(90deg, #00d2ff, #3a7bd5);
+        background: linear-gradient(90deg, var(--accent), var(--accent-2));
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         font-weight: 700;
     }
     
-    header p { 
-        color: #a0a0a0; 
-        font-size: 1.2rem; 
-    }
+    header p { color: #a0a0a0; font-size: 1.2rem; }
     
     .project-detail { 
         margin-top: 4rem; 
@@ -100,112 +126,144 @@ const sortedProjects = allProjects.sort((a, b) => a.data.order - b.data.order);
         gap: 2rem; 
     }
     
-.card {
-    padding: 0; /* On enlève le padding de la carte pour que l'image colle aux bords */
-    overflow: hidden;
-    background: rgba(255, 255, 255, 0.03);
-}
+    .card {
+        padding: 0;
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        border-radius: 24px;
+        transition: all 0.4s ease;
+    }
 
-.card-image {
-    width: 100%;
-    height: 180px;
-    overflow: hidden;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
+    .card:hover {
+        border-color: var(--accent);
+        transform: translateY(-5px);
+        box-shadow: 0 15px 35px rgba(0, 210, 255, 0.1);
+    }
 
-.card-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* L'image remplit le cadre sans se déformer */
-    transition: transform 0.5s ease;
-}
+    .card-image {
+        width: 100%;
+        height: 220px;
+        overflow: hidden;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
 
-.card:hover .card-image img {
-    transform: scale(1.1); /* Petit zoom au survol */
-}
+    .card-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
 
-.card-content {
-    padding: 1.5rem 2rem 2rem 2rem; /* On remet le padding ici */
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-    
+    .card:hover .card-image img { transform: scale(1.05); }
+
+    .card-content { padding: 2rem; }
+
+    /* --- NOUVEL EN-TETE DE CARTE --- */
+    .card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1.5rem;
+        gap: 1rem;
+    }
+
+    .title-wrapper {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .project-icon-inline {
+        width: 28px;
+        height: 28px;
+        stroke: var(--accent);
+        filter: drop-shadow(0 0 5px rgba(0, 210, 255, 0.3));
+        flex-shrink: 0;
+        transition: transform 0.3s ease;
+    }
+
+    .card:hover .project-icon-inline {
+        transform: scale(1.1) rotate(-5deg);
+        filter: drop-shadow(0 0 8px rgba(0, 210, 255, 0.6));
+    }
+
     .card h2 { 
-        color: #00d2ff; 
-        margin-top: 0; 
+        color: #fff;
+        margin: 0;
+        font-size: 1.6rem;
+        font-weight: 700;
     }
     
+    .project-desc { color: #a0a0a0; line-height: 1.6; margin-bottom: 1rem; }
+
     .card ul { 
         color: #888; 
-        line-height: 1.6;
-        margin-bottom: 1.5rem;
+        line-height: 1.8;
+        margin-bottom: 2rem;
+        padding-left: 1.2rem;
     }
     
     .btn-pdf {
         display: inline-block;
-        margin-top: 0.5rem;
-        padding: 0.6rem 1.2rem;
-        background: rgba(0, 210, 255, 0.1);
-        border: 1px solid #00d2ff;
-        color: #00d2ff;
-        border-radius: 8px;
+        padding: 0.8rem 1.5rem;
+        background: rgba(0, 210, 255, 0.05);
+        border: 1px solid var(--accent);
+        color: var(--accent);
+        border-radius: 12px;
         text-decoration: none;
         font-weight: 600;
         transition: all 0.3s ease;
     }
 
     .btn-pdf:hover {
-        background: #00d2ff;
+        background: var(--accent);
         color: #050505;
-        transform: translateY(-2px);
+        box-shadow: 0 10px 20px rgba(0, 210, 255, 0.2);
     }
     
     .glow-overlay {
         position: fixed;
-        top: 0; 
-        left: 0; 
-        width: 100%; 
-        height: 100%;
+        top: 0; left: 0; width: 100%; height: 100%;
         background: radial-gradient(circle at 50% -20%, rgba(0, 210, 255, 0.15), transparent 50%);
         pointer-events: none;
         z-index: -1;
     }
     
     .badge {
-        display: inline-block;
-        font-size: 0.7rem;
+        font-size: 0.65rem;
         font-weight: 700;
         text-transform: uppercase;
         letter-spacing: 1px;
-        padding: 5px 12px;
+        padding: 6px 14px;
         background: rgba(255, 255, 255, 0.05);
         color: #888;
         border-radius: 100px;
-        margin-bottom: 1rem;
         border: 1px solid rgba(255, 255, 255, 0.1);
-        transition: all 0.3s ease;
+        white-space: nowrap;
     }
 
     .card:hover .badge {
-        color: #00d2ff;
-        border-color: #00d2ff;
-        background: rgba(0, 210, 255, 0.05);
+        color: var(--accent);
+        border-color: var(--accent);
     }
 
-    ::-webkit-scrollbar {
-        display: none;
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
     }
 
-    * {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
+    /* Mobile Responsive */
+    @media (max-width: 600px) {
+        .card-header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.8rem;
+        }
+        .badge { order: -1; }
+        .card h2 { font-size: 1.4rem; }
     }
 
-    footer { 
-        margin-top: 10rem; 
-        padding-bottom: 4rem; 
-        text-align: center; 
-        color: #444; 
-    }
+    ::-webkit-scrollbar { display: none; }
+    * { -ms-overflow-style: none; scrollbar-width: none; }
 </style>

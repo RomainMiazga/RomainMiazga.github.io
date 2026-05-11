@@ -1,6 +1,7 @@
 ---
 badge: "Administration & Sécurité"
 title: "🛡️ RDP, MMC et Stratégies Locales"
+icon: "gpo" 
 description: "Mise en œuvre du bureau à distance et sécurisation des profils utilisateurs"
 bullets:
   - "Activation et configuration du Bureau à distance (RDP)"

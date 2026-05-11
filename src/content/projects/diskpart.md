@@ -1,6 +1,7 @@
 ---
 badge: "Système & Scripting"
-title: "💾️ Gestion des disques / Diskpart"
+title: "Gestion des disques / Diskpart"
+icon: "save" 
 description: "Prise en main de l'outil de Gestion des disques et de Diskpart"
 bullets:
   - "Création et optimisation de volumes et de partitions"

@@ -1,6 +1,7 @@
 ---
 badge: "Infrastructure & Stockage"
-title: "🗄️ TrueNAS SCALE"
+title: "TrueNAS SCALE"
+icon: "server" 
 description: "Installation et configuration d'un serveur de stockage réseau"
 bullets:
   - "Configuration du système et des pools de stockage"
