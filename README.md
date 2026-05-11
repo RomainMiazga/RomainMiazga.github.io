@@ -1,4 +1,4 @@
-# 👨‍💻 Portfolio | Romain Miazga
+# Portfolio | Romain Miazga
 
 > Technicien Informatique de Proximité en formation à la  
 > **Metz Numeric School**
@@ -8,13 +8,13 @@ Ce projet a été conçu pour présenter mes compétences en **systèmes**, **r�
 
 ---
 
-## 🌍 Site en ligne
+## Site en ligne
 
 🔗 https://romainmiazga.github.io
 
 ---
 
-# 🛠️ Stack Technique
+# Stack Technique
 
 Plutôt que d'utiliser un CMS classique comme **WordPress**, j’ai choisi de développer ce portfolio avec une approche moderne et performante afin de :
 
@@ -36,40 +36,40 @@ Plutôt que d'utiliser un CMS classique comme **WordPress**, j’ai choisi de d�
 
 #   Fonctionnalités
 
-## ⚡ Navigation fluide avec Astro View Transitions
+## Navigation fluide avec Astro View Transitions
 Transitions modernes entre les pages sans rechargement complet pour une navigation rapide et agréable.
 
-## 🟢 Monitoring API (UptimeRobot)
+## Monitoring API (UptimeRobot)
 Intégration d’une API permettant d’afficher en temps réel l’état de disponibilité de mes services.
 
-## 📱 Responsive Design
+## Responsive Design
 Interface moderne avec effet **Glassmorphism**, optimisée pour :
 
 - Ordinateurs
 - Smartphones
 - Tablettes
 
-## 🗂️ Génération dynamique des projets
+## Génération dynamique des projets
 Les projets sont automatiquement générés à partir de collections Markdown pour simplifier la maintenance du portfolio.
 
 ---
 
-# 🚀 Installation & Développement local
+# Installation & Développement local
 
-## 1️⃣ Cloner le dépôt
+## 1. Cloner le dépôt
 
 ```bash
 git clone https://github.com/RomainMiazga/RomainMiazga.github.io.git
 cd RomainMiazga.github.io
 ```
 
-## 2️⃣ Installer les dépendances
+## 2️. Installer les dépendances
 
 ```bash
 npm install
 ```
 
-## 3️⃣ Lancer le serveur de développement
+## 3. Lancer le serveur de développement
 
 ```bash
 npm run dev
@@ -83,7 +83,7 @@ http://localhost:4321/
 
 ---
 
-# 📦 Build de production
+# Build de production
 
 Pour générer la version de production :
 
@@ -99,7 +99,7 @@ npm run preview
 
 ---
 
-# 📸 Aperçu
+# Aperçu
 
 ```txt
 ✔ Portfolio moderne
@@ -111,7 +111,7 @@ npm run preview
 
 ---
 
-# 📬 Contact
+# Contact
 
 ## 🔗 LinkedIn
 https://www.linkedin.com/in/romain-miazga
