@@ -1,6 +1,6 @@
 ---
 badge: "Infrastructure Réseau"
-title: "Active Directory Domain Services & DNS""
+title: "Active Directory Domain Services & DNS"
 icon: "ad" 
 description: "Déploiement d'une infrastructure de domaine sous Windows Server, incluant la gestion hiérarchique et la résolution de noms."
 bullets:
