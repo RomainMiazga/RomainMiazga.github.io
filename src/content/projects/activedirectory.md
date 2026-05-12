@@ -1,12 +1,12 @@
 ---
-badge: "AD & DNS"
-title: "Active Directory & DNS"
+badge: "Infrastructure Réseau"
+title: "Active Directory Domain Services & DNS""
 icon: "ad" 
-description: "Gestionnaire de serveur, Active Directory (AD
-DS), DNS"
+description: "Déploiement d'une infrastructure de domaine sous Windows Server, incluant la gestion hiérarchique et la résolution de noms."
 bullets:
-  - "Installation de Windows Server avec AD"
-  - "Mis en place d'un Serveur DNS"
+  - "Installation et promotion d'un Contrôleur de Domaine (DC)"
+  - "Configuration et sécurisation des zones DNS"
+  - "Gestion des objets"
 pdfLink: "/Romain_Miazga-TP_Installation_ActiveDirectory.pdf"
 order: 7
 ---
