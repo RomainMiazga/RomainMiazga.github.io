@@ -7,10 +7,7 @@ const name = "Romain Miazga";
 const jobTitle = "Technicien Informatique de Proximité";
 const description = "Actuellement en formation à la Metz Numeric School";
 const allProjects = await getCollection('projects');
-// Fonction pour mélanger le tableau de manière aléatoire
-const shuffled = allProjects.sort(() => Math.random() - 0.5);
-// On prend les 3 premiers du tableau une fois mélangé
-const featuredProjects = shuffled.slice(0, 3);
+const featuredProjects = allProjects.slice(0, 3);
 ---
 
 <Layout title={`${name} | Technicien Informatique`} description={description}>
@@ -188,8 +185,8 @@ const featuredProjects = shuffled.slice(0, 3);
        <div class="line"></div>
     </div>
 
-    <div class="projects-grid hidden-scroll">
-        {featuredProjects.map((project) => (
+    <div id="projects-grid" class="projects-grid hidden-scroll">
+        {allProjects.map((project) => ( // 2. On utilise allProjects pour que le script ait du choix
             <a href={project.data.pdfLink} class="mini-card" target="_blank" rel="noopener noreferrer">
                 <div class="mini-card-content hidden-scroll">
                     <span class="mini-badge">{project.data.badge}</span>
@@ -206,6 +203,37 @@ const featuredProjects = shuffled.slice(0, 3);
             Voir tous mes projets et procédures
         </a>
     </div>
+<script>
+    function limitProjects() {
+        const grid = document.getElementById('projects-grid');
+        if (grid) {
+            // 1. On récupère toutes les cartes présentes dans le HTML
+            const cards = Array.from(grid.children);
+            
+            // 2. On les mélange
+            const shuffled = cards.sort(() => Math.random() - 0.5);
+            
+            // 3. On vide la grille
+            grid.innerHTML = '';
+            
+            // 4. On ne ré-injecte que les 3 premières
+            shuffled.forEach((card, index) => {
+                if (index < 3) {
+                    grid.appendChild(card);
+                    // On s'assure qu'elles sont visibles si l'animation a déjà eu lieu
+                    card.classList.add('show-scroll'); 
+                }
+            });
+        }
+    }
+
+    // Se lance au premier chargement
+    limitProjects();
+
+    // Se relance à chaque fois que le ClientRouter change de page
+    document.addEventListener('astro:page-load', limitProjects);
+</script>
+	
 </section>
 	</main>
 
@@ -252,6 +280,7 @@ const featuredProjects = shuffled.slice(0, 3);
 	/* Hero Section */
 	.hero {
 		text-align: center;
+		margin-top: 4rem;
 		padding: 6rem 0;
 		animation: fadeIn 1s ease-out;
 	}

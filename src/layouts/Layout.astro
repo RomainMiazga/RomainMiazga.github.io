@@ -12,7 +12,7 @@ const {
 
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
-import BaseHead from '../components/BaseHead.astro'; // <-- Import
+import BaseHead from '../components/BaseHead.astro';
 import { ClientRouter } from 'astro:transitions';
 const image = "https://romainmiazga.com/preview.jpg";
 ---
@@ -31,20 +31,17 @@ const image = "https://romainmiazga.com/preview.jpg";
 		
 		<ClientRouter />
 		
+		<!-- Thème : Exécuté immédiatement pour éviter le flash blanc -->
 		<script is:inline>
-  const theme = (() => {
-    if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-      return localStorage.getItem('theme');
-    }
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-  })();
-  
-  if (theme === 'dark') {
-    document.documentElement.setAttribute('data-theme', 'dark');
-  } else {
-    document.documentElement.setAttribute('data-theme', 'light');
-  }
-</script>
+			const theme = (() => {
+				if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+					return localStorage.getItem('theme');
+				}
+				return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+			})();
+			
+			document.documentElement.setAttribute('data-theme', theme === 'dark' ? 'dark' : 'light');
+		</script>
 	</head>
 	<body>
 		<Navbar />
@@ -53,61 +50,75 @@ const image = "https://romainmiazga.com/preview.jpg";
 
 		<Footer />
 
-<script>
-    // Ton script d'animation parfait reste ici...
-    function initScrollAnimations() {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('show-scroll');
-                }
-            });
-        }, {
-            threshold: 0.1,
-            rootMargin: "0px 0px -50px 0px"
-        });
+		<!-- Scripts d'animations -->
+		<script>
+			function initScrollAnimations() {
+				const observer = new IntersectionObserver((entries) => {
+					entries.forEach((entry) => {
+						if (entry.isIntersecting) {
+							entry.target.classList.add('show-scroll');
+							// On arrête d'observer une fois l'élément affiché pour gagner en perf
+							observer.unobserve(entry.target);
+						}
+					});
+				}, {
+					threshold: 0.15,
+					rootMargin: "0px 0px -50px 0px"
+				});
 
-        const hiddenElements = document.querySelectorAll('.hidden-scroll');
-        hiddenElements.forEach((el) => observer.observe(el));
-    }
+				document.querySelectorAll('.hidden-scroll').forEach((el) => observer.observe(el));
+			}
 
-    initScrollAnimations();
-    document.addEventListener('astro:page-load', initScrollAnimations);
-</script>
-		
+			// Initialisation au chargement et à chaque navigation
+			initScrollAnimations();
+			document.addEventListener('astro:page-load', initScrollAnimations);
+		</script>
+
+		<style is:global>
+			/* --- ANIMATIONS DE SCROLL --- */
+			.hidden-scroll {
+				opacity: 0;
+				transform: translateY(25px);
+				filter: blur(8px);
+				transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+				will-change: transform, opacity, filter;
+			}
+
+			.show-scroll {
+				opacity: 1;
+				transform: translateY(0);
+				filter: blur(0);
+			}
+
+			/* Délai automatique pour les listes de cartes */
+			.card.show-scroll:nth-child(1) { transition-delay: 0.1s; }
+			.card.show-scroll:nth-child(2) { transition-delay: 0.2s; }
+			.card.show-scroll:nth-child(3) { transition-delay: 0.3s; }
+
+			/* --- SCROLLBAR PERSONNALISÉE --- */
+			::-webkit-scrollbar {
+				display: block !important;
+				width: 10px;
+			}
+
+			::-webkit-scrollbar-track {
+				background: #050505;
+			}
+
+			::-webkit-scrollbar-thumb {
+				background: linear-gradient(to bottom, #00d2ff, #3a7bd5);
+				border-radius: 100px;
+				border: 2px solid #050505;
+			}
+
+			::-webkit-scrollbar-thumb:hover {
+				background: #00d2ff;
+			}
+
+			* {
+				scrollbar-width: thin;
+				scrollbar-color: #00d2ff #050505;
+			}
+		</style>
 	</body>
 </html>
-
-<style is:global>
-
-   /* 1. Largeur et apparence générale */
-    ::-webkit-scrollbar {
-	    display: block !important;
-        width: 10px; /* Un peu plus large pour être bien cliquable */
-        height: 10px;
-    }
-
-    /* 2. Le fond (la piste) */
-    ::-webkit-scrollbar-track {
-        background: #050505; /* Noir profond comme ton site */
-    }
-
-    /* 3. Le curseur (la partie qui bouge) */
-    ::-webkit-scrollbar-thumb {
-        background: linear-gradient(to bottom, #00d2ff, #3a7bd5); /* Ton dégradé bleu */
-        border-radius: 100px;
-        border: 2px solid #050505; /* Crée une petite bordure pour un effet "pilule" */
-    }
-
-    /* 4. Effet au survol */
-    ::-webkit-scrollbar-thumb:hover {
-        background: #00d2ff;
-        box-shadow: 0 0 15px rgba(0, 210, 255, 0.4);
-    }
-
-    /* 5. Support pour Firefox */
-    * {
-        scrollbar-width: thin;
-        scrollbar-color: #00d2ff #050505;
-    }
-</style>
