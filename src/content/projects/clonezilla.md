@@ -7,5 +7,5 @@ bullets:
   - "Création d'une image disque complète"
   - "Restauration de l'image sur un nouveau poste client"
 pdfLink: "/Procedure-CloneZilla-Romain_Miazga.pdf"
-order: 1
+order: 7
 ---
