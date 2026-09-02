@@ -146,11 +146,23 @@ const featuredProjects = allProjects.slice(0, 3);
 
 		<section class="certs">
 			<div class="section-header hidden-scroll">
-				<h2>Certifications & Formation</h2>
+				<h2>Certifications & Formations</h2>
 				<div class="line"></div>
 			</div>
 			
-			<div class="cert-grid hidden-scroll">
+                      <div class="cert-grid hidden-scroll">
+	                 <div class="cert-card">
+	                 	<div class="cert-content hidden-scroll">
+	                		<div class="cert-badge-icon">
+				<img src="https://www.eureka-education.fr/wp-content/uploads/2024/05/Groupe-de-masques-29@2x.webp" alt="MNS" />
+		           	</div>
+			<div class="cert-info">
+				<strong>Technicien Informatique de Proximité</strong>
+				<p>Assistance informatique, maintenance de logiciels et réseaux</p>
+		 		<span class="verify-tog">DIPLÔME OBTENU — RNCP NIVEAU 4</span>
+		          	</div>
+	                 	</div>
+	               </div>
 				<a href="https://www.credly.com/users/romain-miazga/badges#credly" target="_blank" class="cert-card">
 					<div class="cert-content hidden-scroll">
 						<div class="cert-badge-icon">
@@ -386,7 +398,7 @@ const featuredProjects = allProjects.slice(0, 3);
 
     /* Étape 3 (LA SOLUTION) : Forcer le cadrage sur le haut de la photo */
     /* Cela veut dire : "Affiche 0% horizontalement (centré), mais 0% verticalement (le haut)" */
-    object-position: 40% 0%; 
+    object-position: 40% 40%; 
     /* Ou plus simplement : object-position: top; */
 
     /* Étape 4 (Esthétique - pour matcher votre style actuel) */
@@ -518,6 +530,17 @@ const featuredProjects = allProjects.slice(0, 3);
 		color: var(--accent);
 		letter-spacing: 1px;
 	}
+
+	.verify-tog {
+		display: inline-block;
+		margin-top: 0.8rem;
+		font-size: 0.75rem;
+		font-weight: 700;
+		text-transform: uppercase;
+		color: #4ade80; /* Vert émeraude */
+		letter-spacing: 1px;
+	}
+
 	
 	.featured-projects {
     margin-top: 8rem;
