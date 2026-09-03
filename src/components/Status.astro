@@ -35,7 +35,7 @@
                 if (monitor.status === 2) {
                     dot.style.background = '#00d2ff';
                     dot.style.boxShadow = '0 0 10px #00d2ff';
-                    text.innerText = 'Status: Disponible';
+                    text.innerText = 'Status: En Contrat';
                     
                     // On essaie d'abord le ratio global, sinon le ratio personnalisé
                     const ratio = monitor.all_time_uptime_ratio || monitor.custom_uptime_ratio || 0;
@@ -48,7 +48,7 @@
                 }
             }
         } catch (error) {
-            text.innerText = 'Indisponible';
+            text.innerText = 'En Contrat';
         }
     }
 
